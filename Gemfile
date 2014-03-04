@@ -41,3 +41,34 @@ gem 'jbuilder', '~> 1.2'
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+
+gem 'cancan'
+gem 'figaro'
+gem 'foundation-rails', '5.0.3.1'
+gem 'mysql2'
+gem 'omniauth'
+gem 'omniauth-facebook'
+gem 'puma'
+gem 'rolify'
+gem 'simple_form'
+
+group :development do
+  gem 'guard-bundler'
+  gem 'guard-rails'
+  gem 'hub', :require=>nil
+  gem 'rails_layout'
+  gem 'rb-fchange', :require=>false
+  gem 'rb-fsevent', :require=>false
+  gem 'rb-inotify', :require=>false
+end
+
+group :development, :test do
+  gem 'factory_girl_rails'
+end
+
+group :test do
+  gem 'capybara'
+  gem 'minitest-spec-rails'
+  gem 'minitest-wscolor'
+end
+
