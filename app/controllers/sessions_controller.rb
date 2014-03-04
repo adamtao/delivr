@@ -1,7 +1,6 @@
 class SessionsController < ApplicationController
 
   def new
-    redirect_to '/auth/facebook'
   end
 
   def create
@@ -13,9 +12,8 @@ class SessionsController < ApplicationController
     # http://guides.rubyonrails.org/security.html#session-fixation-countermeasures
     reset_session
     session[:user_id] = user.id
-    user.add_role :admin if User.count == 1 # make the first user an admin
     if user.email.blank?
-      redirect_to edit_user_path(user), :alert => "Please enter your email address."
+      redirect_to edit_profile_path, :alert => "Please enter your email address."
     else
       redirect_to root_url, :notice => 'Signed in!'
     end
