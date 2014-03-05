@@ -1,0 +1,27 @@
+table.cart {
+
+	td.item {
+		width: 50%;
+	}
+	.qty {
+		text-align: center;
+		width: 40px;
+	}
+	.amt {
+		text-align: right;
+	}
+	tr.item_row td {
+		border-bottom: 1px dotted #CCC;
+	}
+}
+
+ul.cart_summary {
+	margin-left: 0;
+	padding-left: 0;
+	border-bottom: 1px solid #999;
+	li {
+		font-size: 12px;
+		line-height: 22px;
+		color: #111;
+	}
+}

@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   rolify
-  validates_presence_of :name
+  validates :name, presence: true
+  has_many :sales_orders
 
   def self.create_with_omniauth(auth)
     create! do |user|
@@ -11,6 +12,19 @@ class User < ActiveRecord::Base
          user.email = auth['info']['email'] || ""
       end
     end
+  end
+
+  def items
+    @items ||= (paid_items + role_items).uniq
+  end
+
+  #TODO: give VIP users extra stuff for free
+  def role_items
+    []
+  end
+
+  def paid_items
+    sales_orders.where("stripe_charge_id IS NOT NULL").map{|so| so.items}.flatten
   end
 
 end

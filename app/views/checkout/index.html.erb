@@ -1,0 +1,69 @@
+<%= content_for :title do %>Finalize Your Order<% end %>
+
+<h1>Finalize Your Order</h1>
+
+<p>After submitting your order, links to the items above
+	will appear in your "My Collection" page.</p>
+
+<%= simple_form_for @sales_order, url: finalize_checkout_path, html: {id: "finalize_checkout"} do |f| %>
+	<%= f.error_notification %>
+
+	<h4 class="subheader">Order Summary</h4>
+	<ul>
+		<% @sales_order.line_items.each do |line_item| %>
+		<li><%= line_item.quantity %> x <%= line_item.item.name %>: 
+			<%= number_to_currency(line_item.total) %></li>
+		<% end %>
+	</ul>
+
+	<h6 class="subheader">Order total: <%= number_to_currency(@sales_order.total_with_tax) %></h6>
+
+	<div class="row">
+		<div class="large-6 columns">
+			<div class="panel">
+				<h4 class="subheader">Payment Details</h4>
+
+				<%= f.hidden_field :stripe_card_token %>
+				<% if @sales_order.stripe_card_token.present? %>
+				  Credit card has already been provided.
+				<% else %>
+				<div class="row">
+				  <div class="small-12 large-12 columns">
+				    <%= label_tag :card_number, "Credit Card Number" %>
+				    <%= text_field_tag :card_number, nil, name: nil %>
+				  </div>
+				 </div>
+				 <div class="row">
+				 	<div class="small-12 large-4 columns">
+				 		<%= label_tag :card_code, "Security Code (CVV)" %>
+				 	</div>
+				 	<div class="small-12 large-8 columns">
+				 		<%= label_tag :card_month, "Card Expiration" %>	
+				 	</div>
+				 </div>
+				 <div class="row">
+				 	<div class="small-12 large-4 columns">
+			    		<%= text_field_tag :card_code, nil, name: nil %>
+				  	</div>
+				    <div class="small-6 large-5 columns">
+				    	<%= select_month nil, {add_month_numbers: true}, {name: nil, id: "card_month"} %>
+				    </div>
+			    	<div class="small-4 large-3 columns end">
+			    		<%= select_year nil, {start_year: Date.today.year, end_year: Date.today.year+15}, {name: nil, id: "card_year"} %>
+				    </div>
+				 </div>
+				<% end %>
+
+				<div id="stripe_error">
+				  <noscript>JavaScript is not enabled and is required for this form. First enable it in your web browser settings.</noscript>
+				</div>
+
+			</div>
+		</div>
+	</div>	
+
+	<%= f.submit "Submit Order", class: 'radius button' %>
+	<span>(This is the final step.)</span>
+
+
+<% end %>

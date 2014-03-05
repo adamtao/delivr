@@ -1,0 +1,42 @@
+<%= content_for :title do %><%= @page_title %><% end %>
+
+<h3><%= @page_title %></h3>
+
+<% if @cart.empty? %>
+	<p>Your cart is currently empty.</p>
+<% else %>
+	<%= form_for @cart, url: update_cart_path do |f| %>
+	<table class="cart">
+		<thead>
+		<tr>
+			<th style="text-align: center;">Item</th>
+			<th class="qty">Quantity</th>
+			<th class="amt">Unit Price</th>
+			<th class="amt">Line Total</th>
+		</tr>
+		</thead>
+		<tbody>
+		<%= f.fields_for :line_items do |l| %>
+		<tr class="item_row">
+			<td class="item">
+				<%= link_to(l.object.item.name, l.object.item) %>
+			</td>
+			<td class="qty"><%= l.text_field :quantity, class: "quantity" %></td>
+			<td class="amt"><%= humanized_money_with_symbol(l.object.unit_price) %></td>
+			<td class="amt"><%= humanized_money_with_symbol(l.object.total) %></td>
+		</tr>
+		<% end %>
+		<tr>
+			<td>&nbsp;</td>
+			<td class="qty"><%= submit_tag "Update Cart", class: 'tiny secondary radius button' %></td>
+			<td class="amt">Subtotal</td>
+			<td class="amt"><%= humanized_money_with_symbol @cart.subtotal %></td>
+		</tr>
+		</tbody>
+	</table>
+	<% end %>
+
+	<p><%= link_to "Checkout", checkout_path, class: 'radius button' %>
+	or, <%= link_to "continue shopping", root_path %>.</p>
+
+<% end %>

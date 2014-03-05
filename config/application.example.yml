@@ -11,6 +11,12 @@
 # TODO: Enter REAL keys from all these providers...
 #
 
+SITE_NAME: My Digital Store
+
+# Payment through stripe
+STRIPE_API_KEY: Your_Stripe_API_key
+STRIPE_PUBLIC_KEY: Your_Stripe_Public_key
+
 # Mandrill is for sending email:
 MANDRILL_USERNAME: Your_Username
 MANDRILL_APIKEY: Your_API_Key
@@ -23,13 +29,18 @@ ADMIN_PASSWORD: secret
 # Social login keys:
 OMNIAUTH_TWITTER_KEY: Your_OmniAuth_Twitter_Key
 OMNIAUTH_TWITTER_SECRET: Your_OmniAuth_Twitter_Secret
+
 FACEBOOK_KEY: Your_Facebook_Key
 FACEBOOK_SECRET: Your_Facebook_Secret
+
 GPLUS_KEY: Your_Google_Plus_Key
 GPLUS_SECRET: Your_Google_Plus_Secret
+
 SOUNDCLOUD_CLIENT_ID: Your_Soundcloud_ID
 SOUNDCLOUD_SECRET: Your_Soundcloud_Secret
 
 # General app setup and other stuff:
 SECRET_KEY_BASE: 343ecd35a7104ae94cc64e04080c9c20501ac05f8ce6afcb5b48d2ad1e224aa44d19efa84d61e040f1563e8a6f4cebb786e687ec2167688eced7507e7b46f268
 ROLES: [admin, user]
+
+FIRST_CATEGORY: Digital Downloads

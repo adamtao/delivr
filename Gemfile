@@ -8,6 +8,7 @@ gem 'jquery-rails'
 gem 'jbuilder', '~> 1.2'
 gem 'figaro'
 gem 'mysql2'
+gem 'acts_as_list'
 gem 'puma' # web server
 
 # Users, roles, etc. gems:
@@ -24,8 +25,9 @@ gem 'rolify'
 gem 'foundation-rails', '5.0.3.1'
 gem 'simple_form'
 gem 'friendly_id'
+gem 'RedCloth'
 
-gem 'rabl' # for better JSON for calendar
+gem 'stripe'
 gem 'money-rails'
 gem 'paperclip' # for attaching images, etc. to records
 

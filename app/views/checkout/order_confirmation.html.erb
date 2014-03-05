@@ -1,0 +1,26 @@
+<%= content_for :title do %>Order <%= @sales_order.order_number %> Complete<% end %>
+
+<h1>Order <%= @sales_order.order_number %></h1>
+
+<p>Thanks for your order! A summary of your order appears below for your records.</p>
+
+<h4 class="subheader">Order Summary</h4>
+<ul>
+	<% @sales_order.line_items.each do |line_item| %>
+	<li><%= line_item.quantity %> x <%= line_item.item.name %>: 
+		<%= number_to_currency(line_item.total) %></li>
+	<% end %>
+</ul>
+
+<h6 class="subheader">Order total: <%= number_to_currency(@sales_order.total_with_tax) %></h6>
+
+<div class="row" style="padding-top: 30px;">
+	<div class="large-8 large-offset-2 columns">
+		<div class="panel text-center" style="padding: 40px 0px;">
+			<%= link_to "Download Purchased Item(s)", profile_path, class: "large radius success button" %>
+		</div>
+	</div>
+</div>
+
+<p class="text-center">Return any time to download your files. Just click the 
+	<%= link_to 'My Collection', profile_path %> link at the top of the page.</p>

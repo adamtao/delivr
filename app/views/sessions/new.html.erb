@@ -1,6 +1,8 @@
-<h3 style="text-align: center">Login with a social network:</h3>
+<%= content_for :title do %>Login<% end %>
 
-<div id="providers">
+<h3 class="text-center">Login with a social network:</h3>
+
+<div class="text-center" style="padding: 20px 0px 40px;">
 	<%= link_to image_tag('icons-64/twitter.png', alt: 'Twitter', size: '64x64'), "/auth/twitter" %>
 	<%= link_to image_tag('icons-64/facebook.png', alt: 'Facebook', size: '64x64'), "/auth/facebook" %>
 	<%= link_to image_tag('icons-64/soundcloud.png', alt: 'Soundcloud', size: '64x64'), "/auth/soundcloud" %>

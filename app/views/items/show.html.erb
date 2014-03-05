@@ -1,0 +1,33 @@
+<%= content_for :title do %><%= @item.name %><% end %>
+
+<h1><%= @item.name %></h1>
+
+<div class="row">
+	<div class="large-7 columns">
+		<div style="margin-bottom: 20px;">
+			<%=raw textilize(@item.description) %>
+		</div>
+
+		<% if current_user && current_user.items.include?(@item) %>
+			<%= link_to 'Download Now', profile_path, class: "medium success radius button" %>
+		<% else %>
+			<h4 class="subheader">
+				<%= humanized_money_with_symbol @item.price %>
+			</h4>
+			<%= button_to 'Add To Cart', add_to_cart_path(@item), class: "small radius button" %>
+		<% end %>
+
+	</div>
+	<div class="large-5 columns">
+		<%# pictures, samples %>
+	</div>
+</div>
+
+
+<% if can? :manage, @item %>
+<br/><br/>
+<ul class="radius button-group">
+	<li><%= link_to 'Edit', edit_item_path(@item), class: 'tiny secondary button' %></li>
+	<li><%= link_to 'Delete', @item, class: 'tiny secondary button', method: :delete, confirm: "Really?" %></li>
+</ul>
+<% end %>

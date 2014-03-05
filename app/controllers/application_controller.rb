@@ -33,6 +33,19 @@ class ApplicationController < ActionController::Base
       end
     end
 
+    def load_cart
+      @cart = current_cart
+    end
+
+    def current_cart
+      if session[:cart_id]
+        @current_cart ||= Cart.find(session[:cart_id])
+      else
+        @current_cart = Cart.create!
+        session[:cart_id] = @current_cart.id
+        @current_cart
+      end
+    end
 
   rescue_from CanCan::AccessDenied do |exception|
     redirect_to root_path, :alert => exception.message
