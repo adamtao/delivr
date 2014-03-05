@@ -25,8 +25,7 @@
   <% category.items.accessible_by(current_ability).each do |item| %>
   <li>
     <%= link_to item do %>
-      <div class="panel text-center">
-        <%# item thumbnail %>
+      <div class="item-panel" <% if item.thumbnail %>style="background: -moz-linear-gradient(transparent, rgba(0,0,0,1)), url('<%= item.thumbnail.url(:small) %>') -10px -10px repeat;"<% end %>>
         <h6><%= item.name %></h6>
       </div>
     <% end %>

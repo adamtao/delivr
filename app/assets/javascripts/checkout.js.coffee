@@ -8,7 +8,6 @@ jQuery ($) ->
 		Stripe.setPublishableKey(stripe_public_key)
 		cart.setupForm()
 
-	shipping_form.setupForm()
 	$('input[type=submit]').attr('disabled', false)
 
 cart =
