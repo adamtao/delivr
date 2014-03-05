@@ -7,10 +7,12 @@ class SalesOrder < ActiveRecord::Base
   belongs_to :user
   has_many :line_items, through: :cart
   has_many :items, through: :line_items
-  has_many :transactions, class_name: "SalesOrderTransaction"
-  has_many :shipments, order: "created_at DESC"
 
   monetize :tax_cents
+  monetize :subtotal_cents
+  monetize :grand_total_cents
+  monetize :stripe_fee_cents
+  monetize :net_total_cents
 
   validates :cart_id, presence: true, uniqueness: true
 
@@ -22,23 +24,13 @@ class SalesOrder < ActiveRecord::Base
   end
 
   # Calculates the total cost of LineItems only
-  def subtotal
-    cart.subtotal
-  end
-
-  # Sums the LineItems plus the tax amount previously calculated
-  def total_with_tax
-    subtotal + tax.to_f
+  def subtotal_cents
+    cart.subtotal_cents
   end
 
   # The grand total in cents--used for the stripe payment
-  def grand_total_in_cents
-    (total_with_tax * 100).to_i
-  end
-
-  # Determines if the cart is empty
-  def empty?
-    cart.empty?
+  def grand_total_cents
+    subtotal_cents + tax_cents
   end
 
   # Determines if the SalesOrder has been paid for
@@ -48,17 +40,21 @@ class SalesOrder < ActiveRecord::Base
 
   # Formats a nice order number:
   def order_number
-    self.new_record? ? '--' : "##{'%06d' % self.id}" 
+    self.new_record? ? '--' : "##{ENV['SITE_NAME'].match(/^\w{3}/).to_s.upcase}#{'%06d' % self.id}" 
   end
 
-  # TODO: determine what stripe's fee is
-  def net_total
-  	stripe_fee = 0.0
-    (total_with_tax - stripe_fee)
+  # TODO: determine what stripe's fee is via the API? Not sure if it is possible.
+  # For now, it is 2.9% plus 30¢
+  def stripe_fee_cents
+    (0.029 * grand_total_cents) + 30
+  end
+
+  def net_total_cents
+    grand_total_cents - stripe_fee_cents
   end
 
   def summary
-    "#{order_number} (#{user.name}, #{number_to_currency(net_total)} net"
+    "#{order_number} (#{user.name}, #{number_to_currency(grand_total)} order total / #{number_to_currency(net_total)} net)"
   end
 
   # Links this SalesOrder with a User account (the user logged in). 
@@ -84,7 +80,7 @@ class SalesOrder < ActiveRecord::Base
 
   def stripe_purchase_options
     {
-      amount: grand_total_in_cents, 
+      amount: grand_total_cents, 
       currency: "usd",
       card: stripe_card_token, 
       description: "#{ENV['SITE_NAME']} order" 

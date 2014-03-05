@@ -3,6 +3,8 @@ class Cart < ActiveRecord::Base
   has_many :line_items
   accepts_nested_attributes_for :line_items
 
+  monetize :subtotal_cents
+
   def get_or_create_sales_order
   	SalesOrder.where(cart_id: self.id).first_or_create
   end
@@ -28,8 +30,8 @@ class Cart < ActiveRecord::Base
   end
 
   # Calculates the total cost of LineItems only (no tax)
-  def subtotal
-  	line_items.inject(0){|total, i| total += i.total.to_f}
+  def subtotal_cents
+  	line_items.inject(0){|total, i| total += i.total_cents}
   end
 
   # Determines if the cart is empty

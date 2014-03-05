@@ -2,10 +2,8 @@
 
 FactoryGirl.define do
   factory :sales_order do
-    cart_id 1
-    user_id 1
-    stripe_charge_id "MyString"
-    tax_cents 1
-    ip_address "MyString"
+    cart
+    user
+    # stripe_charge_id "MyString"
   end
 end

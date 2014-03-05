@@ -2,9 +2,8 @@
 
 FactoryGirl.define do
   factory :item do
-    name "MyString"
-    slug "MyString"
-    description "MyText"
-    price_cents 1
+    sequence(:name) { |n| "Item #{n}" }
+    description "Item description"
+    price_cents 10000
   end
 end

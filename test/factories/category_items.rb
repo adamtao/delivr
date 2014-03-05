@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :category_item do
-    item_id 1
-    category_id 1
+    item
+    category
   end
 end

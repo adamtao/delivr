@@ -1,7 +1,9 @@
 class LineItem < ActiveRecord::Base
 	belongs_to :cart
 	belongs_to :item
+
 	monetize :unit_price_cents
+  monetize :total_cents
 
 	validates :cart_id,  presence: true
 	validates :item_id,  presence: true, uniqueness: { scope: :cart_id }
@@ -11,8 +13,8 @@ class LineItem < ActiveRecord::Base
   after_save :remove_empty_line
 
   # The total for a give LineItem (quantity * price)
-  def total
-  	(self.quantity * self.unit_price).to_money
+  def total_cents
+  	quantity * unit_price_cents
   end
 
   # Clean up LineItems with zero quantity
