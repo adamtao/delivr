@@ -31,6 +31,7 @@ class Ability
     # https://github.com/ryanb/cancan/wiki/Defining-Abilities
     if user.has_role? :admin
         can :manage, :all
+        cannot :create, Item if Category.count < 1
     else
         can :read, Category, active: true
         can :read, Item, active: true

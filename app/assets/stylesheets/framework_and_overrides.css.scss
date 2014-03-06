@@ -371,7 +371,7 @@ $button-lrg: rem-calc(16);
 
 // We use these to style the labels in different ways
 // $form-label-pointer: pointer;
-$form-label-font-size: rem-calc(13);
+$form-label-font-size: rem-calc(14);
 $form-label-font-weight: 200;
 $form-label-font-color: scale-color($body-bg, $lightness: 80%);
 // $form-label-bottom-margin: rem-calc(8);
@@ -1192,8 +1192,15 @@ $paragraph-font-weight: $body-font-weight;
 
 @import 'foundation';
 
-.simple-form.checkbox {
-    margin-right: 6px;
+@media only screen and (min-width: 720px) {
+	img.no-resize { max-width: none; }
+}
+
+input[type="file"] {
+    margin: 0 0.3rem 0.8rem 0;
+}
+input[type="checkbox"], input[type="radio"] {
+    margin: 0 0.3rem 0.1rem 0;
 }
 
 li {

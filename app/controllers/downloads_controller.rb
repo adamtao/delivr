@@ -1,10 +1,11 @@
 class DownloadsController < ApplicationController
-  before_action :set_download, only: [:show, :edit, :update, :destroy]
+  before_action :new_download, only: :create
+  load_and_authorize_resource :item
+  load_and_authorize_resource
 
   # GET /downloads
   # GET /downloads.json
   def index
-    @downloads = Download.all
   end
 
   # GET /downloads/1
@@ -14,7 +15,6 @@ class DownloadsController < ApplicationController
 
   # GET /downloads/new
   def new
-    @download = Download.new
   end
 
   # GET /downloads/1/edit
@@ -24,8 +24,6 @@ class DownloadsController < ApplicationController
   # POST /downloads
   # POST /downloads.json
   def create
-    @download = Download.new(download_params)
-
     respond_to do |format|
       if @download.save
         format.html { redirect_to @download, notice: 'Download was successfully created.' }
@@ -56,19 +54,20 @@ class DownloadsController < ApplicationController
   def destroy
     @download.destroy
     respond_to do |format|
-      format.html { redirect_to downloads_url }
+      format.html { redirect_to @item }
       format.json { head :no_content }
+      format.js
     end
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_download
-      @download = Download.find(params[:id])
+    def new_download
+      @download = Download.new(download_params)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def download_params
-      params.require(:download).permit(:name, :item_id, :file_file_name, :file_content_type, :file_file_size, :file_updated_at)
+      params.require(:download).permit(:name, :item_id, :file)
     end
 end

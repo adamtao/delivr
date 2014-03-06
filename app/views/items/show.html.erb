@@ -1,9 +1,32 @@
 <%= content_for :title do %><%= @item.name %><% end %>
 
-<h1><%= @item.name %></h1>
+<div class="row">
+	<div class="large-8 columns">
+		<h1><%= @item.name %></h1>
+	</div>
+
+	<% if can? :manage, @item %>
+	<div class="large-4 columns clearfix">
+		<br/>
+		<ul class="radius button-group right">
+			<li><%= link_to 'Edit', edit_item_path(@item), class: 'tiny secondary button' %></li>
+			<li><%= link_to 'Delete', @item, class: 'tiny secondary button', method: :delete, data: { confirm: "Really?" } %></li>
+		</ul>
+	</div>
+	<% end %>
+</div>
 
 <div class="row">
-	<div class="large-7 columns">
+	<div class="large-5 large-push-7 small-12 columns">
+		<% if @item.main_image %>
+			<%= link_to(
+					interchange_image(@item.main_image, :medium, {
+							small: 'small', medium: 'large', large: 'medium'
+						}), 
+					@item.main_image.image.url ) %>
+		<% end  %>
+	</div>
+	<div class="large-7 large-pull-5 small-12 columns">
 		<div style="margin-bottom: 20px;">
 			<%=raw textilize(@item.description) %>
 		</div>
@@ -16,18 +39,5 @@
 			</h4>
 			<%= button_to 'Add To Cart', add_to_cart_path(@item), class: "small radius button" %>
 		<% end %>
-
-	</div>
-	<div class="large-5 columns">
-		<%# pictures, samples %>
 	</div>
 </div>
-
-
-<% if can? :manage, @item %>
-<br/><br/>
-<ul class="radius button-group">
-	<li><%= link_to 'Edit', edit_item_path(@item), class: 'tiny secondary button' %></li>
-	<li><%= link_to 'Delete', @item, class: 'tiny secondary button', method: :delete, confirm: "Really?" %></li>
-</ul>
-<% end %>

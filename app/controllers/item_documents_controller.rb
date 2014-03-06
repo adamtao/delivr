@@ -1,10 +1,11 @@
 class ItemDocumentsController < ApplicationController
-  before_action :set_item_document, only: [:show, :edit, :update, :destroy]
+  before_action :new_item_document, only: :create
+  load_and_authorize_resource :item
+  load_and_authorize_resource
 
   # GET /item_documents
   # GET /item_documents.json
   def index
-    @item_documents = ItemDocument.all
   end
 
   # GET /item_documents/1
@@ -14,7 +15,6 @@ class ItemDocumentsController < ApplicationController
 
   # GET /item_documents/new
   def new
-    @item_document = ItemDocument.new
   end
 
   # GET /item_documents/1/edit
@@ -24,8 +24,6 @@ class ItemDocumentsController < ApplicationController
   # POST /item_documents
   # POST /item_documents.json
   def create
-    @item_document = ItemDocument.new(item_document_params)
-
     respond_to do |format|
       if @item_document.save
         format.html { redirect_to @item_document, notice: 'Item document was successfully created.' }
@@ -56,19 +54,20 @@ class ItemDocumentsController < ApplicationController
   def destroy
     @item_document.destroy
     respond_to do |format|
-      format.html { redirect_to item_documents_url }
+      format.html { redirect_to @item }
       format.json { head :no_content }
+      format.js
     end
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_item_document
-      @item_document = ItemDocument.find(params[:id])
+    def new_item_document
+      @item_document = ItemDocument.new(item_document_params)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def item_document_params
-      params.require(:item_document).permit(:item_id, :document_file_name, :document_content_type, :document_file_size, :document_updated_at)
+      params.require(:item_document).permit(:item_id, :document)
     end
 end

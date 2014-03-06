@@ -1,0 +1,43 @@
+<div class="row">
+	<div class="large-3 columns">
+		<%= link_to '< back to item', edit_item_path(@item), class: 'small secondary radius button', style: 'width: 100%' %><br/>
+		<br/>
+		<% if can? :update, @item_image %>
+		<div class="panel">
+			<%= simple_form_for [@item, @item_image], html: { multipart: true } do |f| %>
+				<%= f.input :image, label: "Replace image:" %>
+				<br/><%= f.submit "update", class: "small radius button", style: 'width: 100%' %>
+			<% end %>
+		</div>
+		<% end %>
+
+		<% if can? :destroy, @item_image %>
+			<br/>
+			<%= link_to 'delete', [@item, @item_image], method: :delete, data: { confirm: "Really?" }, class: 'small alert radius button', style: 'width: 100%' %>
+		<% end %>
+
+	</div>
+
+	<div class="large-9 columns">
+
+		<div class="text-center">
+			<%= image_tag @item_image.image.url(:large) %>
+		</div>
+		<hr/>
+
+		<h4>Image Sizes</h4>
+		<p>Use these image links anywhere in the product description, etc.</p>
+
+		<ul>
+			<% @item_image.image.styles.keys.each do |style| %>
+			<li><%= link_to @item_image.image.url(style), @item_image.image.url(style) %></li>
+			<% end %>
+		</ul>
+
+		<% if @item.main_image == @item_image %>
+			<p><i>Note: this is the main image for the item in question, so
+				it appears on the item page by default.</i></p>
+		<% end %>
+
+	</div>
+</div>

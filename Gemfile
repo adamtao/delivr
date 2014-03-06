@@ -28,6 +28,7 @@ gem 'friendly_id'
 gem 'RedCloth'
 
 gem 'stripe'
+gem 'money', require: 'monetize/core_extensions'
 gem 'money-rails'
 gem 'paperclip' # for attaching images, etc. to records
 

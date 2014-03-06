@@ -19,10 +19,14 @@
 
 			<% if current_user.has_role? :admin %>
 			   <li class="has-dropdown"><%= link_to 'Admin', admin_root_path %>
-			   	<ul class="dropdown">
-			   		<li><%= link_to 'New Category', new_category_path %></li>
-			   		<li><%= link_to 'New Item', new_item_path %></li>
-			   	</ul>
+			   	  <ul class="dropdown">
+			   		<% if can? :create, Category %>
+			   			<li><%= link_to 'New Category', new_category_path %></li>
+			   		<% end %>
+			   		<% if can? :create, Item %>
+			   			<li><%= link_to 'New Item', new_item_path %></li>
+			   		<% end %>
+			   	  </ul>
 			   </li>
 			<% end %>
 

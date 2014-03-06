@@ -23,7 +23,9 @@ class Category < ActiveRecord::Base
       tiny_square: "64x64#" 
     }
 
-  before_save :count_active_items
+  validates_attachment_content_type :header_image, content_type: /\Aimage/i
+
+  before_update :count_active_items
 
   def active_items
   	items.where(active: true)
@@ -31,6 +33,7 @@ class Category < ActiveRecord::Base
 
   def count_active_items
     self.active = active_items.count > 0
+    true
   end
 
 end

@@ -1,4 +1,4 @@
-<%= simple_form_for(@item) do |f| %>
+<%= simple_form_for(@item, html: { multipart: true }) do |f| %>
   <%= f.error_notification %>
 
   <div class="form-inputs">
@@ -10,13 +10,62 @@
         <%= f.input :price %>
       </div>
     </div>
+    <div class="row">
+      <div class="large-4 columns">
+        <div class="panel">
+          <h5 class="subheader">Images <small>(first pic is main image)</small></h5>
+          <%= f.simple_fields_for :images do |im| %>
+            <% if im.object.new_record? %>
+              <%= im.input :image, label: false %>
+            <% else %>
+                <%= link_to(image_tag(im.object.image.url(:tiny_square), style: "margin: 0 10px 20px 0"), [@item, im.object]) %>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+      <div class="large-4 columns">
+        <div class="panel">
+          <h5 class="subheader">Documents <small>(public)</small></h5>
+          <%= f.simple_fields_for :documents do |doc| %>
+            <%= doc.input :document, label: false %>
+            <% unless doc.object.new_record? %>
+              <p>
+                <%= link_to 'delete', [@item, doc.object], method: :delete, data: { confirm: "Really?" } %>
+                <%= link_to doc.object.document_file_name.truncate(20), doc.object.document.url %>
+              </p>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+      <div class="large-4 columns">
+        <div class="panel">
+          <h5 class="subheader">Downloads <small>(private--paid access only)</small></h5>
+          <%= f.simple_fields_for :downloads do |d| %>
+            <% if d.object.new_record? %>
+              <%= d.input :file, label: false %>
+            <% else %>
+              <p>
+                <%= link_to 'delete', [@item, d.object], method: :delete, data: { confirm: "Really?" }%>
+                <%= link_to d.object.file_file_name.truncate(20), d.object.file.url %>
+              </p>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <p class="hint"><i>Need more attachments? More of each is available each time this item is edited.</i></p>
 
-    <%= f.association :categories, collection: Category.all, as: :check_boxes %>
+    <div class="row">
+      <div class="large-8 columns">
+        <%= f.input :description, input_html: { style: "height: 220px; font-size: 15px"}  %>
+      </div>
+      <div class="large-4 columns">
+        <%= f.association :categories, collection: Category.all, as: :check_boxes %>
+      </div>
+    </div>
 
-    <%= f.input :description, input_html: { style: "height: 220px; font-size: 15px"}  %>
-    
     <%= f.input :active %>
-
+    
   </div>
 
   <div class="form-actions">

@@ -6,7 +6,7 @@ Delivr::Application.routes.draw do
   resources :categories
   resources :items do 
 	  resources :item_documents
-	  resources :item_images
+	  resources :item_images, only: [:show, :update, :destroy]
 	  resources :downloads
   end
   get 'items/new/:category_id' => 'items#new', as: :new_category_item
