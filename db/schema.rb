@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140305164129) do
+ActiveRecord::Schema.define(version: 20140306012236) do
 
   create_table "carts", force: true do |t|
     t.datetime "created_at"
@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 20140305164129) do
     t.string   "slug"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "active"
   end
 
   add_index "categories", ["slug"], name: "index_categories_on_slug", using: :btree

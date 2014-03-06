@@ -8,7 +8,8 @@ Delivr::Application.routes.draw do
 	  resources :item_documents
 	  resources :item_images
 	  resources :downloads
-  end  	
+  end
+  get 'items/new/:category_id' => 'items#new', as: :new_category_item
 
   # Shopping Cart
   post  'cart/add/:id'    => 'cart#add',    as: :add_to_cart

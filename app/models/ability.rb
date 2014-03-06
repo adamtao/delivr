@@ -32,10 +32,8 @@ class Ability
     if user.has_role? :admin
         can :manage, :all
     else
-        can :read, Category do |c|
-            c.active_items.count > 0
-        end
-        can :read, Item, :active => true
+        can :read, Category, active: true
+        can :read, Item, active: true
     end
   end
 end

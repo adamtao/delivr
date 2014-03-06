@@ -3,7 +3,7 @@
 	<div class="sticky">
 	<nav class="top-bar" data-topbar>
 	  <ul class="title-area">
-	    <li class="logo"><%= link_to 'Home', root_path, :class => 'brand' %></li>
+	    <li class="logo"><%= link_to ENV['SITE_NAME'], root_path, :class => 'brand' %></li>
 	    <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
 	  </ul>
 	  <div class="top-bar-section">

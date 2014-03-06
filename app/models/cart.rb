@@ -17,7 +17,8 @@ class Cart < ActiveRecord::Base
   		line_item.unit_price = item.price
  			line_item.quantity = 1
  		else
- 			line_item.quantity += 1
+      # Un-comment to increment with subsequent clicks on add-to-cart
+ 			# line_item.quantity += 1
  		end
  		line_item.save!
   end

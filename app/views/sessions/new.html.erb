@@ -10,24 +10,41 @@
 </div>
 
 <div class="row">
-	<div class="large-6 large-centered columns">
+	<div class="large-6 columns">
 		<div class="panel">
-			<p>
-			  <strong>Don&rsquo;t use these services?</strong>
-			  <%= link_to "Create an account", new_identity_path %> or login below.
-			</p>
-			<%= form_tag "/auth/identity/callback" do %>
-			  <div class="field">
-			    <%= label_tag :auth_key, "Email" %>
-			    <%= text_field_tag :auth_key %>
-			  </div>
-			  <div class="field">
-			    <%= label_tag :password %>
-			    <%= password_field_tag :password %>
-			  </div>
+			<div class="row">
+				<div class="large-10 large-offset-1 columns">
+					<h4 class="subheader">Don&rsquo;t use these services?</h4>
+					<p>
+					  <%= link_to "Create an account", new_identity_path %> or login below.
+					</p>
 
-			  <div class="actions"><%= submit_tag "Login", class: "button" %></div>
-			<% end %>
+					<%= form_tag "/auth/identity/callback" do %>
+					  <div class="field">
+					    <%= label_tag :auth_key, "Email" %>
+					    <%= text_field_tag :auth_key %>
+					  </div>
+					  <div class="field">
+					    <%= label_tag :password %>
+					    <%= password_field_tag :password %>
+					  </div>
+
+					  <div class="actions"><%= submit_tag "Login", class: "radius button" %></div>
+					<% end %>
+				</div>
+			</div>
 		</div>
+	</div>
+	<div class="large-6 columns">
+		<h4 class="subheader">Why create an account?</h4>
+
+		<p>Why do we require an account? We want to ensure you can
+			access your purchases well into the future. By creating
+			an account, you'll be able to return any time and
+			access the items purchased today or any time.</p>
+
+		<p>Rest assured that when you move to a new computer,
+			you'll be able to come back and retrieve your files
+			again if needed.</p>
 	</div>
 </div>

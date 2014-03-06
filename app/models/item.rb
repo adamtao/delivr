@@ -15,7 +15,14 @@ class Item < ActiveRecord::Base
 	accepts_nested_attributes_for :category_items, reject_if: :all_blank
 	#TODO: validate item belongs to at least one category
 
+	after_save :update_category_activations
+
 	def thumbnail
 		images.where(role: "thumbnail").first
 	end
+
+	def update_category_activations
+		categories.each{|c| c.save}
+	end
+
 end

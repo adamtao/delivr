@@ -29,12 +29,12 @@ class ApplicationController < ActionController::Base
 
     def authenticate_user!
       if !current_user
-        redirect_to root_url, :alert => 'You need to sign in for access to this page.'
+        redirect_to new_session_url, :alert => 'You need to sign in to continue.'
       end
     end
 
     def load_cart
-      @cart = current_cart
+      @cart ||= current_cart
     end
 
     def current_cart

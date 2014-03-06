@@ -1,10 +1,11 @@
 class ItemsController < ApplicationController
-  before_action :set_item, only: [:show, :edit, :update, :destroy]
+  before_action :new_item, only: :create
+  load_and_authorize_resource
 
   # GET /items
   # GET /items.json
   def index
-    @items = Item.all
+    redirect_to categories_path
   end
 
   # GET /items/1
@@ -14,7 +15,9 @@ class ItemsController < ApplicationController
 
   # GET /items/new
   def new
-    @item = Item.new
+    if params[:category_id]
+      @item.categories << Category.find(params[:category_id])
+    end
   end
 
   # GET /items/1/edit
@@ -24,8 +27,6 @@ class ItemsController < ApplicationController
   # POST /items
   # POST /items.json
   def create
-    @item = Item.new(item_params)
-
     respond_to do |format|
       if @item.save
         format.html { redirect_to @item, notice: 'Item was successfully created.' }
@@ -56,15 +57,15 @@ class ItemsController < ApplicationController
   def destroy
     @item.destroy
     respond_to do |format|
-      format.html { redirect_to items_url }
+      format.html { redirect_to categories_url }
       format.json { head :no_content }
     end
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_item
-      @item = Item.find(params[:id])
+    def new_item
+      @item = Item.new(item_params)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

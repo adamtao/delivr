@@ -3,24 +3,28 @@
 <h1>My Collection</h1>
 
 <% if current_user.items.size > 0 %>
-<div class="row">
-	<div class="large-8 columns">
-		<ul>
-			<% current_user.items.each do |item| %>
-			<li><%= link_to item.name, item %></li>
-			<% end %>
-		</ul>
-	</div>
+	<div class="row">
+		<div class="large-8 columns">
+			<ul>
+				<% current_user.items.each do |item| %>
+				<li><%= link_to item.name, item %></li>
+				<% end %>
+			</ul>
+		</div>
 
-	<div class="large-4 columns">
-		<h4 class="subheader">My Profile:</h4>
-		<%= render 'form' %>
+		<div class="large-4 columns">
+			<h4 class="subheader">My Profile:</h4>
+			<%= render 'form' %>
+		</div>
 	</div>
-</div>
 
 <% else %>
 	<p>You haven't purchased anything for your collection yet.</p>
 	
-	<h4 class="subheader">My Profile:</h4>
-	<%= render 'form' %>
+	<div class="row">
+		<div class="large-4 columns">
+			<h4 class="subheader">My Profile:</h4>
+			<%= render 'form' %>
+		</div>
+	</div>
 <% end %>
