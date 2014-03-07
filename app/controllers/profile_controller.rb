@@ -12,9 +12,9 @@ class ProfileController < ApplicationController
 			if current_user.update_attributes(safe_params)
 				format.html { 
 					if session[:cart_id] && current_user.created_at > 10.minutes.ago
-						redirect_to checkout_path, notice: "Your profile was updated. Continuing with your order..."
+						redirect_to checkout_path, notice: t('profile_updated_continue_shopping')
 					else
-						redirect_to profile_path, notice: "Your profile was updated."
+						redirect_to profile_path, notice: t('profile_updated')
 					end
 				}
 			else

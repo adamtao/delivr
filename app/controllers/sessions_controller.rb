@@ -16,18 +16,18 @@ class SessionsController < ApplicationController
     session[:user_id] = user.id
     session[:cart_id] = cart_id
     if user.email.blank?
-      redirect_to edit_profile_path, :alert => "Please enter your email address."
+      redirect_to edit_profile_path, :alert => t('please_enter_email')
     elsif cart_id && !cart.empty?
-      redirect_to checkout_url, notice: 'Signed in!'
+      redirect_to checkout_url, notice: t('signed_in')
     else
-      redirect_to root_url, :notice => 'Signed in!'
+      redirect_to root_url, :notice => t('signed_in')
     end
 
   end
 
   def destroy
     reset_session
-    redirect_to root_url, :notice => 'Signed out!'
+    redirect_to root_url, :notice => t('signed_out')
   end
 
   def failure

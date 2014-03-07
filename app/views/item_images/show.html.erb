@@ -1,19 +1,20 @@
+<%= content_for :title do %><%= t('image').capitalize %> <%= @item_image.position %> for <%= @item.name %><% end %>
 <div class="row">
 	<div class="large-3 columns">
-		<%= link_to '< back to item', edit_item_path(@item), class: 'small secondary radius button', style: 'width: 100%' %><br/>
+		<%= link_to t('back_to_item'), edit_item_path(@item), class: 'small secondary radius button', style: 'width: 100%' %><br/>
 		<br/>
 		<% if can? :update, @item_image %>
 		<div class="panel">
 			<%= simple_form_for [@item, @item_image], html: { multipart: true } do |f| %>
 				<%= f.input :image, label: "Replace image:" %>
-				<br/><%= f.submit "update", class: "small radius button", style: 'width: 100%' %>
+				<br/><%= f.submit t("update"), class: "small radius button", style: 'width: 100%' %>
 			<% end %>
 		</div>
 		<% end %>
 
 		<% if can? :destroy, @item_image %>
 			<br/>
-			<%= link_to 'delete', [@item, @item_image], method: :delete, data: { confirm: "Really?" }, class: 'small alert radius button', style: 'width: 100%' %>
+			<%= link_to t('delete').downcase, [@item, @item_image], method: :delete, data: { confirm: t('confirm_delete') }, class: 'small alert radius button', style: 'width: 100%' %>
 		<% end %>
 
 	</div>

@@ -1,29 +1,54 @@
-<%= content_for :title do %>My Collection<% end %>
+<%= content_for :title do %><%= t('my_collection') %><% end %>
 
-<h1>My Collection</h1>
+<h1><%= t('my_collection') %></h1>
 
 <% if current_user.items.size > 0 %>
 	<div class="row">
 		<div class="large-8 columns">
-			<ul>
-				<% current_user.items.each do |item| %>
-				<li><%= link_to item.name, item %></li>
-				<% end %>
-			</ul>
+			<% current_user.items.each do |item| %>
+			<div class="panel">
+				<div class="row">
+					<div class="large-8 small-8 columns">
+						<h4><%= item.name %> <%= t('downloads').capitalize %>:</h4>
+						<ul>
+							<% item.downloads.each do |d| %>
+								<li><%= link_to d.name, d.file.url %> 
+									[<%= number_to_human_size(d.file_file_size) %>]
+								</li>
+							<% end %>
+						</ul>
+						<% if item.documents.size > 0 %>
+						<h6 class="subheader"><%= t('documentation').capitalize %>:</h6>
+						<ul>
+							<% item.documents.each do |d| %>
+								<li><%= link_to d.document_file_name, d.document.url %></li>
+							<% end %>
+						</ul>
+						<% end %>
+					</div>
+					<div class="large-4 small-4 columns text-center">
+						<% if item.main_image %>
+							<%= link_to(image_tag(item.main_image.image.url(:thumb), alt: item.name), item) %>
+						<% end %>
+						<p><small><%= link_to "#{item.name} details", item %></small></p>
+					</div>
+				</div>
+			</div>
+			<% end %>
 		</div>
 
 		<div class="large-4 columns">
-			<h4 class="subheader">My Profile:</h4>
+			<h4 class="subheader"><%= t 'my_profile' %>:</h4>
 			<%= render 'form' %>
 		</div>
 	</div>
 
 <% else %>
-	<p>You haven't purchased anything for your collection yet.</p>
+	<p><%=t 'collection_empty' %></p>
 	
 	<div class="row">
 		<div class="large-4 columns">
-			<h4 class="subheader">My Profile:</h4>
+			<h4 class="subheader"><%= t 'my_profile' %>:</h4>
 			<%= render 'form' %>
 		</div>
 	</div>

@@ -5,11 +5,12 @@ Delivr::Application.routes.draw do
   # Browsing
   resources :categories
   resources :items do 
-	  resources :item_documents
+	  resources :item_documents, only: :destroy
 	  resources :item_images, only: [:show, :update, :destroy]
-	  resources :downloads
+	  resources :downloads, only: :destroy
   end
   get 'items/new/:category_id' => 'items#new', as: :new_category_item
+  get 'downloads/:id/download' => 'downloads#download', as: :download_file
 
   # Shopping Cart
   post  'cart/add/:id'    => 'cart#add',    as: :add_to_cart
@@ -26,7 +27,7 @@ Delivr::Application.routes.draw do
 	get   'auth/failure', to: 'sessions#failure'
 	get   'signin', to: 'sessions#new', as: 'new_session'
 	get   'signout', to: 'sessions#destroy', as: 'signout'
-	get   'profile', to: 'profile#show', as: 'profile'
+	get   'my_collection', to: 'profile#show', as: 'profile'
 	get   'profile/edit', to: 'profile#edit', as: 'edit_profile'
 	patch 'profile/update', to: 'profile#update', as: 'update_profile'
   resources :identities

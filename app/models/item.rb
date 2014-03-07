@@ -32,7 +32,7 @@ class Item < ActiveRecord::Base
 	end
 
 	def belongs_to_a_category
-		errors.add(:name, "must belong to at least one category.") unless categories.size > 0
+		errors.add(:name, I18n.t('must_belong_to_a_category')) unless categories.size > 0
 	end
 
 end

@@ -2,12 +2,6 @@ class ItemsController < ApplicationController
   before_action :new_item, only: :create
   load_and_authorize_resource
 
-  # GET /items
-  # GET /items.json
-  def index
-    redirect_to categories_path
-  end
-
   # GET /items/1
   # GET /items/1.json
   def show
@@ -31,12 +25,10 @@ class ItemsController < ApplicationController
   def create
     respond_to do |format|
       if @item.save
-        format.html { redirect_to @item, notice: 'Item was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @item }
+        format.html { redirect_to @item, notice: "#{t('item').capitalize} #{t('was_created')}." }
       else
         build_child_object(3)
         format.html { render action: 'new' }
-        format.json { render json: @item.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -45,13 +37,11 @@ class ItemsController < ApplicationController
   # PATCH/PUT /items/1.json
   def update
     respond_to do |format|
-      if @item.update(item_params)
-        format.html { redirect_to @item, notice: 'Item was successfully updated.' }
-        format.json { head :no_content }
+      if @item.update!(item_params)
+        format.html { redirect_to @item, notice: "#{t('item').capitalize} #{t('was_updated')}." }
       else
         build_child_object(2)
         format.html { render action: 'edit' }
-        format.json { render json: @item.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -62,7 +52,6 @@ class ItemsController < ApplicationController
     @item.destroy
     respond_to do |format|
       format.html { redirect_to categories_url }
-      format.json { head :no_content }
     end
   end
 
@@ -78,12 +67,12 @@ class ItemsController < ApplicationController
         :category_ids => [], 
         :images_attributes    => [:id, :image], 
         :documents_attributes => [:id, :document], 
-        :downloads_attributes => [:id, :file])
+        :downloads_attributes => [:id, :name, :file])
     end
 
     def build_child_object(n=3)
       n.times { @item.images.build }
-      n.times { @item.downloads.build }
+      (n - 1).times { @item.downloads.build }
       n.times { @item.documents.build }
     end
 end

@@ -54,7 +54,7 @@ class SalesOrder < ActiveRecord::Base
   end
 
   def summary
-    "#{order_number} (#{user.name}, #{number_to_currency(grand_total)} order total / #{number_to_currency(net_total)} net)"
+    "#{order_number} (#{user.name}, #{number_to_currency(grand_total)} #{t('total')} / #{number_to_currency(net_total)} net)"
   end
 
   # Links this SalesOrder with a User account (the user logged in). 
@@ -72,7 +72,7 @@ class SalesOrder < ActiveRecord::Base
         save!
       rescue Stripe::InvalidRequestError => e
         logger.error "Stripe error while creating customer: #{e.message}"
-        errors.add :base, "There was a problem with your credit card."
+        errors.add :base, t('problem_with_cc')
         false
       end
     end    

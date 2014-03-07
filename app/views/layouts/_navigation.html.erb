@@ -10,28 +10,28 @@
 	    <ul class="right">
 
 		<% if session[:cart_id] %>
-		  <li><%= link_to 'My Cart', view_cart_path %></li>
+		  <li><%= link_to t('my_cart'), view_cart_path %></li>
 		<% end %>
 
 		<% if user_signed_in? %>
-		  <li><%= link_to 'My Collection', profile_path %></li>
-		  <li><%= link_to 'Logout', signout_path %></li>
+		  <li><%= link_to t('my_collection'), profile_path %></li>
+		  <li><%= link_to t('logout'), signout_path %></li>
 
 			<% if current_user.has_role? :admin %>
-			   <li class="has-dropdown"><%= link_to 'Admin', admin_root_path %>
+			   <li class="has-dropdown"><%= link_to t('admin'), admin_root_path %>
 			   	  <ul class="dropdown">
 			   		<% if can? :create, Category %>
-			   			<li><%= link_to 'New Category', new_category_path %></li>
+			   			<li><%= link_to t('new_category'), new_category_path %></li>
 			   		<% end %>
 			   		<% if can? :create, Item %>
-			   			<li><%= link_to 'New Item', new_item_path %></li>
+			   			<li><%= link_to t('new_item'), new_item_path %></li>
 			   		<% end %>
 			   	  </ul>
 			   </li>
 			<% end %>
 
 		<% else %>
-		  <li><%= link_to 'Login', new_session_path %></li>
+		  <li><%= link_to t('login'), new_session_path %></li>
 		<% end %>
 
 	    </ul>

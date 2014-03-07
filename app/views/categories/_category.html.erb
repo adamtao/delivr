@@ -11,10 +11,10 @@
     <br/>
     <ul class="radius button-group right">
       <% if can? :create, Item %>
-        <li><%= link_to "+Add Item", new_category_item_path(category), class: 'tiny secondary button' %></li>
+        <li><%= link_to t('add_item'), new_category_item_path(category), class: 'tiny secondary button' %></li>
       <% end %>
-      <li><%= link_to 'Edit Category', edit_category_path(category), class: 'tiny secondary button' %></li>
-      <li><%= link_to 'Delete', category, method: :delete, data: { confirm: 'Are you sure?' }, class: 'tiny secondary button' %></li>
+      <li><%= link_to t('edit_category'), edit_category_path(category), class: 'tiny secondary button' %></li>
+      <li><%= link_to t('delete'), category, method: :delete, data: { confirm: t('confirm_delete') }, class: 'tiny secondary button' %></li>
     </ul>
   </div>
   <% end %>

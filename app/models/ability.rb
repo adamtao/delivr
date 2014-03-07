@@ -35,6 +35,18 @@ class Ability
     else
         can :read, Category, active: true
         can :read, Item, active: true
+        can :read, ItemDocument do |i|
+            i.item.active? || user.items.include?(i.item)
+        end
+        can :read, ItemImage do |i|
+            i.item.active? || user.items.include?(i.item)
+        end
+        cannot :download, Download
+
+        # Users who purchased something:
+        can :download, Download do |d|
+            user.items.include?(d.item)
+        end
     end
   end
 end

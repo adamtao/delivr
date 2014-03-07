@@ -4,21 +4,20 @@ class CartController < ApplicationController
   def add
     item = Item.find(params[:id])
     @cart.add(item)
-    redirect_to view_cart_path, notice: "#{item.name} was added to your cart."
+    redirect_to view_cart_path, notice: "#{item.name} #{t('was_add_to_your_cart')}."
   end
   
   def remove
     line_item = @cart.remove(params[:id])
-    redirect_to view_cart_path, notice: "#{line_item.item_name} was removed from your cart."
+    redirect_to view_cart_path, notice: "#{line_item.item_name} #{t('was_removed_from_your_cart')}."
   end
 
   def update
     @cart.update_attributes(cart_params)
-    redirect_to view_cart_path, notice: "Your cart was updated."  
+    redirect_to view_cart_path, notice: t('your_cart_was_updated')  
   end
 
   def view
-    @page_title = "Shopping Cart"
   end
 
   private

@@ -20,4 +20,73 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  downloads: Downloads
+  documentation: Documentation
+  my_collection: My Collection
+  collection_empty: You haven't purchased anything for your collection yet.
+  my_profile: My Profile
+  update_my_profile: Update My Profile
+  my_cart: My Cart
+  logout: Logout
+  login: Login
+  admin: Admin
+  image: Image
+  category: Category
+  new_category: New Category
+  new_item: New Item
+  download_now: Download Now
+  add_to_cart: Add To Cart
+  edit: Edit 
+  delete: Delete 
+  confirm_delete: Are you sure?
+  cart_is_empty: Your cart is currently empty.
+  item: item
+  quantity: quantity
+  unit_price: unit price
+  line_total: line total
+  update_cart: Update Cart
+  checkout: Checkout
+  continue_shopping: continue shopping
+  subtotal: subtotal
+  total: total 
+  add_item: Add Item 
+  edit_category: Edit Category 
+  access_denied: Access denied.
+  sign_in_to_continue: You need to sign in to continue.
+  was_added_to_your_cart: was added to your cart
+  was_removed_from_your_cart: was removed from your cart
+  your_cart_was_updated: Your cart was updated.
+  was_created: was successfully created
+  was_updated: was successfully updated
+  checkout_complete: "Your order is complete. Please check your collection for download links."
+  order_submit_problem: "There was a problem submitting the order. Please try again."
+  order_prepare_problem: "There was a problem preparing the order. Please try again."
+  order_complete: Order Complete
+  profile_updated_continue_shopping: "Your profile was updated. Continuing with your order..."
+  profile_updated: "Your profile was updated."
+  please_enter_email: "Please enter your email address."
+  signed_in: 'Signed in!'
+  signed_out: 'Signed out!'
+  must_belong_to_a_category: "must belong to at least one category."
+  problem_with_cc: "There was a problem with your credit card."
+  finalize_your_order: Finalize Your Order
+  where_to_find_downloads: "After submitting your order, links to the items above will appear in your \"My Collection\" page."
+  order_summary: Order Summary
+  payment_details: Payment Details
+  card_already_provided: Credit card has already been provided.
+  cc_num: "Credit Card Number"
+  cvv: "Security Code (CVV)"
+  cc_exp: "Card Expiration"
+  final_step: This is the final step.
+  require_javascript_message: JavaScript is not enabled and is required for this form. First enable it in your web browser settings.
+  thanks_for_order: Thanks for your order! A summary of your order appears below for your records.
+  download_purchased_items: "Download Purchased Item(s)"
+  new_account: New Account
+  register: Register
+  back_to_item: '< back to item'
+  update: update
+  social_login: Login with a social network
+  no_social: Don't use these services?
+  create_an_account: Create an account
+  or_login_below:  or login below
+  

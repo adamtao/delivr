@@ -1,10 +1,10 @@
-<%= content_for :title do %>Order <%= @sales_order.order_number %> Complete<% end %>
+<%= content_for :title do %><%= t 'order_complete' %> <%= @sales_order.order_number %><% end %>
 
-<h1>Order <%= @sales_order.order_number %></h1>
+<h1<%= t 'order_complete' %> <%= @sales_order.order_number %></h1>
 
-<p>Thanks for your order! A summary of your order appears below for your records.</p>
+<p><%= t 'thanks_for_order' %></p>
 
-<h4 class="subheader">Order Summary</h4>
+<h4 class="subheader"><%= t 'order_summary' %></h4>
 <ul>
 	<% @sales_order.line_items.each do |line_item| %>
 	<li><%= line_item.quantity %> x <%= line_item.item.name %>: 
@@ -12,15 +12,15 @@
 	<% end %>
 </ul>
 
-<h6 class="subheader">Order total: <%= humanized_money_with_symbol @sales_order.grand_total %></h6>
+<h6 class="subheader"><%= t 'total' %>: <%= humanized_money_with_symbol @sales_order.grand_total %></h6>
 
 <div class="row" style="padding-top: 30px;">
 	<div class="large-8 large-offset-2 columns">
 		<div class="panel text-center" style="padding: 40px 0px;">
-			<%= link_to "Download Purchased Item(s)", profile_path, class: "large radius success button" %>
+			<%= link_to t('download_purchased_items'), profile_path, class: "large radius success button" %>
 		</div>
 	</div>
 </div>
 
 <p class="text-center">Return any time to download your files. Just click the 
-	<%= link_to 'My Collection', profile_path %> link at the top of the page.</p>
+	<%= link_to t('my_collection').capitalize, profile_path %> link at the top of the page.</p>

@@ -1,4 +1,6 @@
-<h1>New category</h1>
+<%= content_for :title do %><%= t('new_category') %><% end %>
+
+<h1><%= t('new_category') %></h1>
 
 <%= render 'form' %>
 

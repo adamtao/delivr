@@ -1,6 +1,6 @@
-<%= content_for :title do %>Login<% end %>
+<%= content_for :title do %><%= t('login').capitalize %><% end %>
 
-<h3 class="text-center">Login with a social network:</h3>
+<h3 class="text-center"><%= t('social_login') %>:</h3>
 
 <div class="text-center" style="padding: 20px 0px 40px;">
 	<%= link_to image_tag('icons-64/twitter.png', alt: 'Twitter', size: '64x64'), "/auth/twitter" %>
@@ -14,9 +14,10 @@
 		<div class="panel">
 			<div class="row">
 				<div class="large-10 large-offset-1 columns">
-					<h4 class="subheader">Don&rsquo;t use these services?</h4>
+					<h4 class="subheader"><%= t('no_social') %></h4>
 					<p>
-					  <%= link_to "Create an account", new_identity_path %> or login below.
+					  <%= link_to t('create_an_account'), new_identity_path %>
+					  <%= t('or_login_below') %>.
 					</p>
 
 					<%= form_tag "/auth/identity/callback" do %>
@@ -29,7 +30,7 @@
 					    <%= password_field_tag :password %>
 					  </div>
 
-					  <div class="actions"><%= submit_tag "Login", class: "radius button" %></div>
+					  <div class="actions"><%= submit_tag t("Login"), class: "radius button" %></div>
 					<% end %>
 				</div>
 			</div>

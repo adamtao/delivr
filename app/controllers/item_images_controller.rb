@@ -12,11 +12,9 @@ class ItemImagesController < ApplicationController
   def update
     respond_to do |format|
       if @item_image.update(item_image_params)
-        format.html { redirect_to [@item, @item_image], notice: 'Image was successfully updated.' }
-        format.json { head :no_content }
+        format.html { redirect_to [@item, @item_image], notice: "#{t('image')} #{t('was_updated')}." }
       else
         format.html { render action: 'show' }
-        format.json { render json: @item_image.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -26,9 +24,7 @@ class ItemImagesController < ApplicationController
   def destroy
     @item_image.destroy
     respond_to do |format|
-      format.html { redirect_to @item }
-      format.json { head :no_content }
-      format.js
+      format.html { redirect_to edit_item_path(@item) }
     end
   end
 

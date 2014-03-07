@@ -1,6 +1,6 @@
-<%= content_for :title do %>New Account<% end %>
+<%= content_for :title do %><%= t 'new_account' %><% end %>
 
-<h3 style="text-align: center">New Account</h3>
+<h3 style="text-align: center"><%= t 'new_account' %></h3>
 
 <div class="row">
   <div class="large-6 large-centered columns">
@@ -10,7 +10,7 @@
         <%= f.input :email, input_html: { name: 'email' } %>
         <%= f.input :password, as: :password, input_html: { name: 'password' } %>
         <%= f.input :password_confirmation, as: :password, input_html: { name: 'password_confirmation' } %>
-        <%= submit_tag "Register", class: "button" %>
+        <%= submit_tag t('register').capitalize, class: "button" %>
       </div>
     <% end %>
   </div>

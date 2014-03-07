@@ -27,11 +27,12 @@
         <div class="panel">
           <h5 class="subheader">Documents <small>(public)</small></h5>
           <%= f.simple_fields_for :documents do |doc| %>
-            <%= doc.input :document, label: false %>
-            <% unless doc.object.new_record? %>
+            <% if doc.object.new_record? %>
+              <%= doc.input :document, label: false %>
+            <% else %>
               <p>
-                <%= link_to 'delete', [@item, doc.object], method: :delete, data: { confirm: "Really?" } %>
-                <%= link_to doc.object.document_file_name.truncate(20), doc.object.document.url %>
+                <%= link_to image_tag("trash.gif", alt: "delete"), [@item, doc.object], method: :delete, data: { confirm: "Really?" } %>
+                <%= link_to doc.object.document_file_name.truncate(30), doc.object.document.url %>
               </p>
             <% end %>
           <% end %>
@@ -42,11 +43,12 @@
           <h5 class="subheader">Downloads <small>(private--paid access only)</small></h5>
           <%= f.simple_fields_for :downloads do |d| %>
             <% if d.object.new_record? %>
-              <%= d.input :file, label: false %>
+              <%= d.input :name, label: "Friendly Name" %>
+              <%= d.input :file, label: false %><br/>
             <% else %>
               <p>
-                <%= link_to 'delete', [@item, d.object], method: :delete, data: { confirm: "Really?" }%>
-                <%= link_to d.object.file_file_name.truncate(20), d.object.file.url %>
+                <%= link_to image_tag("trash.gif", alt: "delete"), [@item, d.object], method: :delete, data: { confirm: "Really?" }%>
+                <%= link_to d.object.name.truncate(30), d.object.file.url %>
               </p>
             <% end %>
           <% end %>
@@ -57,7 +59,7 @@
 
     <div class="row">
       <div class="large-8 columns">
-        <%= f.input :description, input_html: { style: "height: 220px; font-size: 15px"}  %>
+        <%= f.input :description, input_html: { style: "height: 200px; font-size: 15px"}  %>
       </div>
       <div class="large-4 columns">
         <%= f.association :categories, collection: Category.all, as: :check_boxes %>

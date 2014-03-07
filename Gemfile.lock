@@ -282,7 +282,6 @@ DEPENDENCIES
   launchy
   minitest-spec-rails
   minitest-wscolor
-  money
   money-rails
   mysql2
   omniauth
