@@ -44,11 +44,7 @@
 		</div>
 
 		<% if current_user && current_user.items.include?(@item) %>
-			<% if @item.downloads.count == 1 %>
-				<%= link_to t('download_now'), @item.downloads.first.file.url, class: "medium success radius button" %>
-			<% else %>
-				<%= link_to t('download_now'), profile_path, class: "medium success radius button" %>
-			<% end %>
+			<%= link_to t('download_now'), item_download_path(@item), class: "medium success radius button" %>
 		<% else %>
 			<h4 class="subheader">
 				<%= humanized_money_with_symbol @item.price %>

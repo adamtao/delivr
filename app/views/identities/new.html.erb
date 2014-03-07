@@ -8,8 +8,8 @@
       <div class="panel">
         <%= f.input :name, input_html: { name: 'name' } %>
         <%= f.input :email, input_html: { name: 'email' } %>
-        <%= f.input :password, as: :password, input_html: { name: 'password' } %>
-        <%= f.input :password_confirmation, as: :password, input_html: { name: 'password_confirmation' } %>
+        <%= f.input :password, as: :password, input_html: { name: 'password', autocomplete: "off" } %>
+        <%= f.input :password_confirmation, as: :password, input_html: { name: 'password_confirmation', autocomplete: "off" } %>
         <%= submit_tag t('register').capitalize, class: "button" %>
       </div>
     <% end %>

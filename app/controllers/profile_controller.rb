@@ -23,6 +23,15 @@ class ProfileController < ApplicationController
 		end		
 	end
 
+	def update_password
+		identity = Identity.find(current_user.uid)
+		if identity.update!(params.require(:identity).permit(:password, :password_confirmation))
+			respond_to do |format|
+				format.html {	redirect_to profile_path, notice: t('profile_updated') }
+			end
+		end
+	end
+
 private
 
 	# Setup which params can be passed in via web forms

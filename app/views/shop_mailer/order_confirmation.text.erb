@@ -1,0 +1,20 @@
+<%= t('shop_mailer.order_confirmation.subject', site: ENV['SITE_NAME'], order: @sales_order.order_number) %>
+
+<%= t 'thanks_for_order' %>
+
+<%= t 'order_summary' %>
+
+<% @sales_order.line_items.each do |line_item| %>
+ * <%= line_item.quantity %> x <%= line_item.item.name %>: <%= humanized_money_with_symbol line_item.total %>
+<% end %>
+
+<%= t 'total' %>: <%= humanized_money_with_symbol @sales_order.grand_total %>
+
+We've added the item(s) to your account. Just visit the <%= t('my_collection').capitalize %> link on our site to get the goods:
+
+<%= profile_url %>
+
+--The <%= ENV['SITE_NAME'] %> Team
+<%= ENV['DEFAULT_FROM'] %>
+
+<%= root_url %>

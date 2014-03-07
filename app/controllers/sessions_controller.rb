@@ -34,4 +34,31 @@ class SessionsController < ApplicationController
     redirect_to root_url, :alert => "Authentication error: #{params[:message].humanize}"
   end
 
+  def forgot_password
+    if request.post?
+      user = User.where(email: params[:email]).first_or_initialize
+      if user.new_record?
+        redirect_to forgot_password_path, alert: t('no_account_found')
+      elsif user.provider == "identity"
+        redirect_to forgot_password_path, notice: t('check_email_for_password_reset')
+        user.send_password_reset
+      else
+        redirect_to new_session_path, notice: t('your_account_was_registered_via', provider: user.provider)
+      end
+    end
+  end
+
+  def reset_password
+    @identity = Identity.where(password_reset_digest: params[:password_reset_digest]).first_or_initialize
+    if @identity.new_record?
+      redirect_to forgot_password_path, alert: "Sorry, something went wrong resetting your password. Try again."
+    elsif request.post?
+      if @identity.update!(params.require(:identity).permit(:password, :password_confirmation))
+        @identity.password_reset_digest = nil
+        @identity.save
+        redirect_to new_session_path, notice: "#{t('password_is_reset')} #{t('sign_in_to_continue')}"
+      end
+    end
+  end
+
 end

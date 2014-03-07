@@ -1,0 +1,21 @@
+<h3><%= t('shop_mailer.order_confirmation.subject', site: ENV['SITE_NAME'], order: @sales_order.order_number) %></h3>
+
+<p><%= t 'thanks_for_order' %></p>
+
+<h6 class="subheader"><%= t 'order_summary' %></h6>
+<ul>
+	<% @sales_order.line_items.each do |line_item| %>
+	<li><%= line_item.quantity %> x <%= line_item.item.name %>: 
+		<%= humanized_money_with_symbol line_item.total %></li>
+	<% end %>
+</ul>
+
+<p><%= t 'total' %>: <%= humanized_money_with_symbol @sales_order.grand_total %></p>
+
+<p>We've added the item(s) to your account. Just visit the
+	<%= link_to t('my_collection').capitalize, profile_url %> link on our site to get the goods.</p>
+
+<p>--The <%= ENV['SITE_NAME'] %> Team<br/>
+	<%= ENV['DEFAULT_FROM'] %></p>
+
+<p><%= link_to root_url, root_url %></p>

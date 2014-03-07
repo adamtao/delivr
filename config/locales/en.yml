@@ -20,6 +20,7 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+  submit: submit
   downloads: Downloads
   documentation: Documentation
   my_collection: My Collection
@@ -58,29 +59,29 @@ en:
   your_cart_was_updated: Your cart was updated.
   was_created: was successfully created
   was_updated: was successfully updated
-  checkout_complete: "Your order is complete. Please check your collection for download links."
-  order_submit_problem: "There was a problem submitting the order. Please try again."
-  order_prepare_problem: "There was a problem preparing the order. Please try again."
+  checkout_complete: Your order is complete. Please check your collection for download links.
+  order_submit_problem: There was a problem submitting the order. Please try again.
+  order_prepare_problem: There was a problem preparing the order. Please try again.
   order_complete: Order Complete
-  profile_updated_continue_shopping: "Your profile was updated. Continuing with your order..."
-  profile_updated: "Your profile was updated."
-  please_enter_email: "Please enter your email address."
-  signed_in: 'Signed in!'
-  signed_out: 'Signed out!'
-  must_belong_to_a_category: "must belong to at least one category."
-  problem_with_cc: "There was a problem with your credit card."
+  profile_updated_continue_shopping: Your profile was updated. Continuing with your order...
+  profile_updated: Your profile was updated.
+  please_enter_email: Please enter your email address.
+  signed_in: Signed in!
+  signed_out: Signed out!
+  must_belong_to_a_category: must belong to at least one category.
+  problem_with_cc: There was a problem with your credit card.
   finalize_your_order: Finalize Your Order
   where_to_find_downloads: "After submitting your order, links to the items above will appear in your \"My Collection\" page."
   order_summary: Order Summary
   payment_details: Payment Details
   card_already_provided: Credit card has already been provided.
-  cc_num: "Credit Card Number"
-  cvv: "Security Code (CVV)"
-  cc_exp: "Card Expiration"
+  cc_num: Credit Card Number
+  cvv: Security Code (CVV)
+  cc_exp: Card Expiration
   final_step: This is the final step.
   require_javascript_message: JavaScript is not enabled and is required for this form. First enable it in your web browser settings.
   thanks_for_order: Thanks for your order! A summary of your order appears below for your records.
-  download_purchased_items: "Download Purchased Item(s)"
+  download_purchased_items: Download Purchased Item(s)
   new_account: New Account
   register: Register
   back_to_item: '< back to item'
@@ -89,4 +90,25 @@ en:
   no_social: Don't use these services?
   create_an_account: Create an account
   or_login_below:  or login below
-  
+  social_provider_message: "Your account was registered via %{provider}. No additional info is needed."
+  forgot_password: Forgot your password?
+  enter_your_email_label: Enter the email address you registered with us
+  send_password_reset: Send Password Reset
+  no_account_found: "Sorry, no account was found with that address."
+  check_email_for_password_reset: "We're sending password reset instructions to your email. Please check your spam filter if you don't receive it."
+  your_account_was_registered_via: "Your account was registered via %{provider}. Please click the corresponding icon below:"
+  reset_your_password: Reset your password
+  new_password: New password
+  update_password: Update password
+  password_is_reset: Your password has been reset. 
+
+  account_mailer:
+    password_reset:
+      subject: "%{site} Password reset instructions"
+    welcome:
+      subject: "Welcome to %{site}"
+
+  shop_mailer:
+    order_confirmation:
+      subject: "%{site} order %{order}"
+

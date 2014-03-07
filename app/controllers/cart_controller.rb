@@ -4,7 +4,7 @@ class CartController < ApplicationController
   def add
     item = Item.find(params[:id])
     @cart.add(item)
-    redirect_to view_cart_path, notice: "#{item.name} #{t('was_add_to_your_cart')}."
+    redirect_to view_cart_path, notice: "#{item.name} #{t('was_added_to_your_cart')}."
   end
   
   def remove

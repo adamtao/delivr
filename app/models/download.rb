@@ -6,8 +6,9 @@ class Download < ActiveRecord::Base
 	validates :file_file_name, presence: true
 
   has_attached_file :file, 
-    url: '/downloads/:id/download',
-	path: ":rails_root/../../shared/protected/:class/:attachment/:id_:timestamp/:basename.:extension"
+    url: '/download/:timestamp/:id/:hash.:extension',
+    hash_secret: ENV['SECRET_KEY_BASE'],
+		path: ":rails_root/../../shared/protected/:class/:attachment/:id_:timestamp/:basename.:extension"
 
 	validates :file, attachment_presence: true
 	do_not_validate_attachment_file_type :file

@@ -1,0 +1,8 @@
+<br/><br/>
+
+<%= simple_form_for Identity.find(current_user.uid), url: update_password_path do |f| %>
+	<%= f.input :password, label: t('new_password'), input_html: { autocomplete: "off" } %>
+	<%= f.input :password_confirmation, input_html: { autocomplete: "off" } %>
+
+	<%= f.submit t('update_password'), class: "small radius button" %>
+<% end %>

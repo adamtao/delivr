@@ -10,7 +10,7 @@ Delivr::Application.routes.draw do
 	  resources :downloads, only: :destroy
   end
   get 'items/new/:category_id' => 'items#new', as: :new_category_item
-  get 'downloads/:id/download' => 'downloads#download', as: :download_file
+  get 'download/:timestamp/:id/:hash.:extension' => 'downloads#download', as: :download_file
 
   # Shopping Cart
   post  'cart/add/:id'    => 'cart#add',    as: :add_to_cart
@@ -27,6 +27,11 @@ Delivr::Application.routes.draw do
 	get   'auth/failure', to: 'sessions#failure'
 	get   'signin', to: 'sessions#new', as: 'new_session'
 	get   'signout', to: 'sessions#destroy', as: 'signout'
+  get   'forgot_password', to: 'sessions#forgot_password'
+  post  'forgot_password', to: 'sessions#forgot_password'
+  get   'reset_password/:password_reset_digest', to: 'sessions#reset_password', as: :reset_password
+  post  'reset_password/:password_reset_digest', to: 'sessions#reset_password'
+  patch 'update_password', to: 'profile#update_password'
 	get   'my_collection', to: 'profile#show', as: 'profile'
 	get   'profile/edit', to: 'profile#edit', as: 'edit_profile'
 	patch 'profile/update', to: 'profile#update', as: 'update_profile'

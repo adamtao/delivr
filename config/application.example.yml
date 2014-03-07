@@ -20,6 +20,8 @@ STRIPE_PUBLIC_KEY: Your_Stripe_Public_key
 # Mandrill is for sending email:
 MANDRILL_USERNAME: Your_Username
 MANDRILL_APIKEY: Your_API_Key
+DEFAULT_FROM: info@domain.com
+HOST_FOR_MAILER: domain.com
 
 # Seeds the first user as an admin:
 ADMIN_NAME: Admin User

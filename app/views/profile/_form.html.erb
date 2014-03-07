@@ -1,5 +1,6 @@
 <%= simple_form_for current_user, url: update_profile_path do |f| %>
 	<%= f.input :name %>
 	<%= f.input :email %>
+
 	<%= f.submit t('update_my_profile'), class: "small radius button" %>
 <% end %>

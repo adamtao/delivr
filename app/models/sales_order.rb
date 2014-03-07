@@ -70,6 +70,7 @@ class SalesOrder < ActiveRecord::Base
         charge = Stripe::Charge.create(stripe_purchase_options)
         self.stripe_charge_id = charge.id
         save!
+        ShopMailer.order_confirmation(self).deliver
       rescue Stripe::InvalidRequestError => e
         logger.error "Stripe error while creating customer: #{e.message}"
         errors.add :base, t('problem_with_cc')
