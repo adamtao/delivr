@@ -1,14 +1,15 @@
 <% if category.header_image_file_name.present? %>
-  <%= image_tag(category.header_image.url(:banner), alt: category.name) %>
+  <h1><%= image_tag(category.header_image.url(:large_banner), alt: category.name) %></h1>
+<% else %>
+  <h1><%= category.name %></h1>
 <% end %>
 
 <div class="row clearfix">
   <div class="large-8 columns">
-    <h1><%= category.name %></h1>
+    <%=raw textilize(category.description) %>
   </div>
   <% if can? :manage, category %>
   <div class="large-4 columns clearfix">
-    <br/>
     <ul class="radius button-group right">
       <% if can? :create, Item %>
         <li><%= link_to t('add_item'), new_category_item_path(category), class: 'tiny secondary button' %></li>
@@ -20,7 +21,6 @@
   <% end %>
 </div>
 
-<div><%=raw textilize(category.description) %></div>
 <ul class="large-block-grid-5 small-block-grid-2">
   <% category.items.accessible_by(current_ability).each do |item| %>
   <li>

@@ -44,6 +44,12 @@ class CategoriesController < ApplicationController
     end
   end
 
+  def delete_banner
+    @category.header_image = nil
+    @category.save
+    redirect_to edit_category_path(@category)
+  end
+
   # DELETE /categories/1
   # DELETE /categories/1.json
   def destroy

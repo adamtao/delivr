@@ -5,9 +5,13 @@
     <%= f.input :name %>
     <%= f.input :description, input_html: { style: "height: 120px; font-size: 15px"} %>
     <%= f.input :header_image %>
+    <% if @category.header_image.present? %>
+    	<p><%= link_to(image_tag(@category.header_image.url(:small_banner)), @category.header_image.url) %>
+    	<%= link_to 'delete banner', delete_banner_category_path(@category), method: :patch, data: { confirm: t('confirm_delete')}, class: "tiny radius alert button" %></p>
+    <% end %>
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit, class: "radius button" %>
+    <br/><%= f.button :submit, class: "radius button" %>
   </div>
 <% end %>

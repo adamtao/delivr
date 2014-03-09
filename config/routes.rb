@@ -3,7 +3,11 @@ Delivr::Application.routes.draw do
   root :to => "home#index"
 
   # Browsing
-  resources :categories
+  resources :categories do 
+    member do
+      patch :delete_banner
+    end
+  end
   resources :items do 
 	  resources :item_documents, only: :destroy
 	  resources :item_images, only: [:show, :update, :destroy]
