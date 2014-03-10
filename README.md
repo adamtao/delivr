@@ -26,7 +26,6 @@ set your environment variables in a bashrc file like this:
 export SITE_NAME="Site Name"
 export DEPLOY_HOST=127.0.0.1
 export DEPLOY_USER=deploy
-export DEPLOY_PASSWORD=secret
 
 
 DEVELOPMENT TODO

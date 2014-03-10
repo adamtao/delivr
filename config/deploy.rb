@@ -4,6 +4,7 @@ default_run_options[:pty] = true
 
 set :application, ENV['SITE_NAME'].downcase.gsub(/\W/, "_")
 set :repository,  'https://github.com/adamtao/delivr.git'
+set :deploy_to, "/var/www/#{application}"
 set :deploy_via, :remote_cache
 set :scm, :git 
 set :user, ENV['DEPLOY_USER']

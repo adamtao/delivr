@@ -32,6 +32,10 @@ gem 'stripe'
 gem 'money-rails'
 gem 'paperclip' # for attaching images, etc. to records
 
+group :production do
+  gem 'therubyracer'
+end
+
 group :development do
   gem 'guard-bundler'
   gem 'guard-rails'
