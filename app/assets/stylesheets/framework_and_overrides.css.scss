@@ -1193,7 +1193,7 @@ $paragraph-font-weight: $body-font-weight;
 @import 'foundation';
 
 body {
-	background: asset-data-url('page_bg.png') repeat-y;
+	background: #000 asset-data-url('page_bg.png') repeat-y;
 }
 
 @media only screen and (min-width: 720px) {
