@@ -207,10 +207,10 @@ $secondary-color: #666;
 // $include-html-button-classes: $include-html-classes;
 
 // We use these to build padding for buttons.
-$button-tny: rem-calc(8);
-$button-sml: rem-calc(12);
-$button-med: rem-calc(14);
-$button-lrg: rem-calc(16);
+$button-tny: rem-calc(6);
+$button-sml: rem-calc(9);
+$button-med: rem-calc(11);
+$button-lrg: rem-calc(14);
 
 // We use this to control the display property.
 // $button-display: inline-block;
@@ -1191,6 +1191,10 @@ $paragraph-font-weight: $body-font-weight;
 // $include-html-visibility-classes: $include-html-classes;
 
 @import 'foundation';
+
+body {
+	background: asset-data-url('page_bg.png') repeat-y;
+}
 
 @media only screen and (min-width: 720px) {
 	img.no-resize { max-width: none; }

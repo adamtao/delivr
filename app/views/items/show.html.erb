@@ -44,7 +44,7 @@
 		</div>
 
 		<% if current_user && current_user.items.include?(@item) %>
-			<%= link_to t('download_now'), item_download_path(@item), class: "medium success radius button" %>
+			<%= link_to t('download_now'), quick_item_download_path(@item), class: "medium success radius button" %>
 		<% else %>
 			<h4 class="subheader">
 				<%= humanized_money_with_symbol @item.price %>

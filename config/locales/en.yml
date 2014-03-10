@@ -55,8 +55,8 @@ en:
   continue_shopping: continue shopping
   subtotal: subtotal
   total: total 
-  add_item: Add Item 
-  edit_category: Edit Category 
+  add_item: "+Item" 
+  edit_category: Edit Category
   access_denied: Access denied.
   sign_in_to_continue: You need to sign in to continue.
   was_added_to_your_cart: was added to your cart

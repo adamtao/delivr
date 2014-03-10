@@ -9,6 +9,7 @@ gem 'figaro'
 gem 'mysql2'
 gem 'acts_as_list'
 gem 'puma' # web server
+gem 'capistrano'
 
 # Users, roles, etc. gems:
 gem 'omniauth'

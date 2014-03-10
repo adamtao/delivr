@@ -3,3 +3,7 @@
 <h1><%= t('edit_category') %></h1>
 
 <%= render 'form' %>
+
+<% if can? :destroy, @category %>
+<p><%= link_to t('delete'), @category, method: :delete, data: { confirm: t('confirm_delete') }, class: 'tiny alert radius button' %></p>
+<% end %>

@@ -3,10 +3,23 @@
 <h3 class="text-center"><%= t('social_login') %>:</h3>
 
 <div class="text-center" style="padding: 20px 0px 40px;">
+	
+	<% if ENV['OMNIAUTH_TWITTER_KEY'] %>
 	<%= link_to image_tag('icons-64/twitter.png', alt: 'Twitter', size: '64x64'), "/auth/twitter" %>
+	<% end %>
+
+	<% if ENV['FACEBOOK_KEY'] %>
 	<%= link_to image_tag('icons-64/facebook.png', alt: 'Facebook', size: '64x64'), "/auth/facebook" %>
+	<% end %>
+
+	<% if ENV['SOUNDCLOUD_CLIENT_ID'] %>
 	<%= link_to image_tag('icons-64/soundcloud.png', alt: 'Soundcloud', size: '64x64'), "/auth/soundcloud" %>
+	<% end %>
+
+	<% if ENV['GPLUS_KEY'] %>
 	<%= link_to image_tag('icons-64/googleplus.png', alt: "Google+", size: '64x64'), "/auth/gplus" %>
+	<% end %>
+
 </div>
 
 <div class="row">

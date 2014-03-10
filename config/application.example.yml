@@ -1,18 +1,14 @@
-# Add account credentials and API keys here.
-# See http://railsapps.github.io/rails-environment-variables.html
-# This file should be listed in .gitignore to keep your settings secret!
-# Each entry sets a local environment variable.
-# For example, setting:
-# GMAIL_USERNAME: Your_Gmail_Username
-# makes 'Your_Gmail_Username' available as ENV["GMAIL_USERNAME"]
-
 # Add application configuration variables here, as shown below.
-#
-# TODO: Enter REAL keys from all these providers...
 #
 
 SITE_NAME: My Digital Store
-GOOGLE_ANALYTICS_ACCOUNT: UA-YourGA-ID
+
+# Used by capistrano to deploy your application to the production server
+DEPLOY_HOST: example.com 
+DEPLOY_USER: deploy
+# If you want to deploy to a staging server, set these:
+#STAGING_HOST: staging.example.com
+#STAGING_USER: deploy
 
 # Payment through stripe
 STRIPE_API_KEY: Your_Stripe_API_key
@@ -33,7 +29,8 @@ ADMIN_NAME: Admin User
 ADMIN_EMAIL: admin@email.com
 ADMIN_PASSWORD: secret
 
-# Social login keys:
+# Social login keys. If you don't want to use one of these providers,
+# just leave the setting blank.
 OMNIAUTH_TWITTER_KEY: Your_OmniAuth_Twitter_Key
 OMNIAUTH_TWITTER_SECRET: Your_OmniAuth_Twitter_Secret
 
@@ -51,3 +48,4 @@ SECRET_KEY_BASE: 343ecd35a7104ae94cc64e04080c9c20501ac05f8ce6afcb5b48d2ad1e224aa
 ROLES: [admin, user]
 
 FIRST_CATEGORY: Digital Downloads
+GOOGLE_ANALYTICS_ACCOUNT: UA-YourGA-ID

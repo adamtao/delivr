@@ -1,6 +1,6 @@
 module DownloadsHelper
 
-	def item_download_path(item)
+	def quick_item_download_path(item)
 		if current_user && current_user.paid_items.include?(item)
 			if item.downloads.size == 1
 				item.downloads.first.file.url
