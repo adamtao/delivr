@@ -9,6 +9,9 @@ Installation
 
 I've tried to build this thing so you'll need minimal customization to get it running. You'll definitely need to take a look at config/application.example.yml. Fill in all the settings with your own, and then save it as config/application.yml. This file is ignored by git, so you'll be able to keep your settings.
 
+Deployment
+----------
+
 Capistrano deployment is configured to look on your production environment's shared folder for the files below which are then sylinked to their designated paths in the application:
 
 * app/assets/stylesheets/framework_and_overrides.css.scss => app/assets/stylesheets/framework_and_overrides.css.scss
@@ -16,6 +19,14 @@ Capistrano deployment is configured to look on your production environment's sha
 * app/assets/images/logo.png => app/assets/images/logo.png
 * app/assets/images/page_bg.png => app/assets/images/page_bg.png
 * config/application.yml => config/application.yml
+
+Unfortunately, I couldn't get capistrano to read ENV from application.yml. A quick workaround is to 
+set your environment variables in a bashrc file like this:
+
+export SITE_NAME="Site Name"
+export DEPLOY_HOST=127.0.0.1
+export DEPLOY_USER=deploy
+export DEPLOY_PASSWORD=secret
 
 
 DEVELOPMENT TODO

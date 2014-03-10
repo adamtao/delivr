@@ -1,14 +1,14 @@
 # config valid only for Capistrano 3.1
 lock '3.1.0'
 
-set :application, ENV['SITE_NAME'].parameterize.underscore
-set :repo_url, 'git@github.com:adamtao/delivr.git'
+set :application, ENV['SITE_NAME'].downcase.gsub(/\W/, "_")
+set :repo_url, 'https://github.com/adamtao/delivr.git'
 
 # Default branch is :master
 # ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }
 
 # Default deploy_to directory is /var/www/my_app
-set :deploy_to, '/var/www/:application'
+set :deploy_to, "/var/www/#{ENV['SITE_NAME'].downcase.gsub(/\W/, "_")}"
 
 # Default value for :scm is :git
 # set :scm, :git

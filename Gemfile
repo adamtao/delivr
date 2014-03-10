@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '2.0.0'
+# ruby '2.0.0'
 gem 'rails', '4.0.3'
 gem 'sass-rails', '~> 4.0.0'
 gem 'uglifier', '>= 1.3.0'
@@ -10,6 +10,7 @@ gem 'mysql2'
 gem 'acts_as_list'
 gem 'puma' # web server
 gem 'capistrano'
+gem 'net-ssh', '~> 2.8.1', :git => "https://github.com/net-ssh/net-ssh"
 
 # Users, roles, etc. gems:
 gem 'omniauth'
