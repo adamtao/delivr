@@ -1,0 +1,8 @@
+A contact form has been submitted on the <%= ENV['SITE_NAME'] %> site. Please respond accordingly.
+
+From:
+<%= @support_message.name %> (<%= @support_message.email %>)
+
+Message:
+
+<%=h @support_message.message %>

@@ -12,6 +12,7 @@
 #
 
 SITE_NAME: My Digital Store
+GOOGLE_ANALYTICS_ACCOUNT: UA-YourGA-ID
 
 # Payment through stripe
 STRIPE_API_KEY: Your_Stripe_API_key
@@ -22,6 +23,10 @@ MANDRILL_USERNAME: Your_Username
 MANDRILL_APIKEY: Your_API_Key
 DEFAULT_FROM: info@domain.com
 HOST_FOR_MAILER: domain.com
+
+# For support contact form. Leave blank to hide contact form
+SUPPORT_EMAIL: support@domain.com
+SUPPORT_PHONE: 
 
 # Seeds the first user as an admin:
 ADMIN_NAME: Admin User

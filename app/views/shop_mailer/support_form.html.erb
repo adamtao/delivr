@@ -1,0 +1,7 @@
+<p>A contact form has been submitted on the <%= ENV['SITE_NAME'] %> site. 
+	Please respond accordingly.</p>
+
+<p><b>From:</b> <%= @support_message.name %> (<%= @support_message.email %>)</p>
+<p><b>Message:</b></p>
+
+<div><%=h @support_message.message %></div>

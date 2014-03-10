@@ -21,6 +21,10 @@
 
 en:
   submit: submit
+  contact_us: Contact us
+  contact_form_success: "We've sent your message. Expect a response soon."
+  call_us: "Would you rather talk? Call us at "
+  fill_out_the_form_to_contact: "Fill out the form below to contact us: "
   downloads: Downloads
   documentation: Documentation
   my_collection: My Collection
@@ -34,6 +38,7 @@ en:
   image: Image
   category: Category
   new_category: New Category
+  products: Products
   new_item: New Item
   download_now: Download Now
   add_to_cart: Add To Cart

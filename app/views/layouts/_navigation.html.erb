@@ -3,9 +3,26 @@
 	<div class="sticky">
 	<nav class="top-bar" data-topbar>
 	  <ul class="title-area">
-	    <li class="logo"><%= link_to ENV['SITE_NAME'], root_path, :class => 'brand' %></li>
+	    <li class="logo">
+	    	<%= link_to root_path, :class => 'brand' do %>
+	    		<%= image_tag "logo.png", alt: '' %>
+	    		<%= ENV['SITE_NAME'] %>
+	    	<% end %>
+	    </li>
 	    <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
 	  </ul>
+
+	  <div class="top-bar-section">
+	  	<ul class="left">
+	  		<li><%= link_to t('products'), categories_path %></li>
+	  	<% if ENV['SUPPORT_EMAIL'] %>
+	  		<li><%= link_to t('contact_us'), support_form_path %></li>
+	  	<% elsif ENV['SUPPORT_PHONE'] %>
+	  		<li><%= t('contact_us') %>: <%= ENV['SUPPORT_PHONE'] %></li>
+	  	<% end %>
+	  	</ul>
+	  </div>
+
 	  <div class="top-bar-section">
 	    <ul class="right">
 

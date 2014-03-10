@@ -1,0 +1,23 @@
+<h1 class="text-center"><%= t('contact_us') %></h1>
+<% if ENV['SUPPORT_PHONE'] %>
+	<p class="text-center"><%= t('call_us') %>: <%= ENV['SUPPORT_PHONE'] %></p>
+<% end %>
+
+<div class="row">
+	<div class="large-8 large-offset-2 columns">
+		<div class="panel">
+			<p><%= t('fill_out_the_form_to_contact') %></p>
+
+		<%= simple_form_for @support_message, url: support_form_path do |f| %>
+
+			<%= f.error_notification %>
+			<%= f.input :name %>
+			<%= f.input :email %>
+			<%= f.input :subject %>
+			<%= f.input :message, input_html: { style: "height: 150px"} %>
+
+			<br/><%= f.button :submit, class: "radius button" %>
+		<% end %>
+		</div>
+	</div>
+</div>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140307195921) do
+ActiveRecord::Schema.define(version: 20140310002354) do
 
   create_table "carts", force: true do |t|
     t.datetime "created_at"
@@ -155,6 +155,15 @@ ActiveRecord::Schema.define(version: 20140307195921) do
 
   add_index "sales_orders", ["cart_id"], name: "index_sales_orders_on_cart_id", using: :btree
   add_index "sales_orders", ["user_id"], name: "index_sales_orders_on_user_id", using: :btree
+
+  create_table "support_messages", force: true do |t|
+    t.string   "name"
+    t.string   "email"
+    t.string   "subject"
+    t.text     "message"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "name"

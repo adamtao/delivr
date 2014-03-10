@@ -9,14 +9,15 @@ TODO
 [x] Change password 
 [x] Order confirmation email
 [x] Welcome email
-[ ] Category banner images
-[ ] Support page
+[x] Category banner images
+[x] Support page
+[x] Google Analytics
 [ ] T/C, privacy policy
-[ ] Better look for cart, order, confirmation
 [ ] Testing (should've done this along the way)
 
 TODO LATER
 ----------
+[ ] Better look for cart, order, confirmation
 [ ] Delayed job for mailers
 [ ] Admin settings page
 [ ] Coupon codes
