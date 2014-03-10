@@ -1,58 +1,37 @@
-# config valid only for Capistrano 3.1
-lock '3.1.0'
+require "bundler/capistrano"
+load 'deploy/assets'
+default_run_options[:pty] = true
 
 set :application, ENV['SITE_NAME'].downcase.gsub(/\W/, "_")
-set :repo_url, 'https://github.com/adamtao/delivr.git'
+set :repository,  'https://github.com/adamtao/delivr.git'
+set :deploy_via, :remote_cache
+set :scm, :git 
+set :user, ENV['DEPLOY_USER']
+set :use_sudo, false
 
-# Default branch is :master
-# ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }
+server ENV['DEPLOY_HOST'], :web, :app, :db, primary: true
 
-# Default deploy_to directory is /var/www/my_app
-set :deploy_to, "/var/www/#{ENV['SITE_NAME'].downcase.gsub(/\W/, "_")}"
-
-# Default value for :scm is :git
-# set :scm, :git
-
-# Default value for :format is :pretty
-# set :format, :pretty
-
-# Default value for :log_level is :debug
-# set :log_level, :debug
-
-# Default value for :pty is false
-set :pty, true
-
-# Default value for :linked_files is []
-set :linked_files, %w{config/database.yml config/application.yml public/favicon.ico app/assets/images/logo.png app/assets/images/page_bg.png app/assets/stylesheets/framework_and_overrides.css.scss}
-
-# Default value for linked_dirs is []
-set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
-
-# Default value for default_env is {}
-# set :default_env, { path: "/opt/ruby/bin:$PATH" }
-
-# Default value for keep_releases is 5
-# set :keep_releases, 5
+before "deploy:restart", "deploy:migrate"
+after "deploy:restart", "deploy:cleanup"
 
 namespace :deploy do
-
-  desc 'Restart application'
-  task :restart do
-    on roles(:app), in: :sequence, wait: 5 do
-      # Your restart mechanism here, for example:
-      execute :touch, release_path.join('tmp/restart.txt')
-    end
+  task :start do ; end
+  task :stop do ; end
+  task :restart, :roles => :app, :except => { :no_release => true } do
+    run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
   end
 
-  after :publishing, :restart
+  task :symlink_configs_and_stuff, roles: :app do
+    run "ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml"
+    run "ln -nfs #{shared_path}/config/application.yml #{release_path}/config/application.yml"
+    # run "ln -nfs #{shared_path}/config/puma.rb #{release_path}/config/puma/production.rb"
 
-  after :restart, :clear_cache do
-    on roles(:web), in: :groups, limit: 3, wait: 10 do
-      # Here we can do anything such as:
-      # within release_path do
-      #   execute :rake, 'cache:clear'
-      # end
-    end
+    run "cp #{shared_path}/public/favicon.ico #{release_path}/public/favicon.ico"
+    run "cp #{shared_path}/app/assets/images/logo.png #{release_path}/app/assets/images/logo.png"
+    run "cp #{shared_path}/app/assets/images/page_bg.png #{release_path}/app/assets/images/page_bg.png"
+    run "cp #{shared_path}/app/assets/stylesheets/framework_and_overrides.css.scss #{release_path}/app/assets/stylesheets/framework_and_overrides.css.scss"
   end
+  after "deploy:update_code", "deploy:symlink_configs_and_stuff"
+  before "deploy:assets:precompile", "deploy:symlink_configs_and_stuff"
 
 end

@@ -9,7 +9,7 @@ gem 'figaro'
 gem 'mysql2'
 gem 'acts_as_list'
 gem 'puma' # web server
-gem 'capistrano'
+gem 'capistrano', '~>2.15'
 gem 'net-ssh', '~> 2.8.1', :git => "https://github.com/net-ssh/net-ssh"
 
 # Users, roles, etc. gems:
