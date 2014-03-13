@@ -1,13 +1,14 @@
 class User < ActiveRecord::Base
   rolify
   validates :name, presence: true
-  validates :email, presence: true, format: /\A[-a-z0-9_+\.]+\@([-a-z0-9]+\.)+[a-z0-9]{2,4}\z/i
+  validates :email, presence: true, format: /\A[-a-z0-9_+\.]+\@([-a-z0-9]+\.)+[a-z0-9]{2,4}\z/i, :if => :needs_email?
   has_many :sales_orders
 
   after_create :welcome
+  after_update :welcome_if_new_email
 
   def self.create_with_omniauth(auth)
-    create! do |user|
+    create do |user|
       user.provider = auth['provider']
       user.uid = auth['uid']
       if auth['info']
@@ -17,8 +18,16 @@ class User < ActiveRecord::Base
     end
   end
 
+  def needs_email?
+    !self.new_record? || self.provider == "identity"
+  end
+
+  def welcome_if_new_email
+    welcome if self.email_changed? && self.email_was('')
+  end
+
   def welcome
-    AccountMailer.welcome(self).deliver
+    AccountMailer.welcome(self).deliver if self.email.present?
   end
 
   def items

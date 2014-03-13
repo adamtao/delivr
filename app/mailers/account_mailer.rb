@@ -9,8 +9,10 @@ class AccountMailer < ActionMailer::Base
 
   def welcome(user)
   	@user = user
-  	mail to: @user.email,
-  	  subject: I18n.t('account_mailer.welcome.subject', site: ENV['SITE_NAME'])
+    if @user.email?
+      mail to: @user.email,
+        subject: I18n.t('account_mailer.welcome.subject', site: ENV['SITE_NAME'])
+    end
   end
 
 end

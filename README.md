@@ -30,6 +30,7 @@ export DEPLOY_USER=deploy
 
 DEVELOPMENT TODO
 ----------------
+* Sitemap
 * T/C, privacy policy
 * Testing (should've done this along the way)
 * Better look for cart, order, confirmation
