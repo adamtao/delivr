@@ -23,7 +23,7 @@ class User < ActiveRecord::Base
   end
 
   def welcome_if_new_email
-    welcome if self.email_changed? && self.email_was('')
+    welcome if self.email_changed? && self.email_was == ""
   end
 
   def welcome
