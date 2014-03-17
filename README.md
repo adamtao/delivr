@@ -1,8 +1,21 @@
 Delivr
 =========
 
-A rails app to sell/deliver digital goods.
+A rails app to sell/deliver digital goods. Uses some pretty standard libraries to put it all together:
 
+* Stripe for payment
+* Money for currency calculations
+* Omniauth for logins (twitter, facebook, google plus, soundcloud and identity setup by default)
+* Cancan and rolify to keep track of who does what
+* Zurb Foundation for the front end
+* Simple Form for, well, forms
+* Redcloth (textilize) for text formatting
+* Figaro for sensitive (and non-sensitive) settings
+* Paperclip for attaching files to database records
+* Capistrano for deployment
+* Mysql database
+* Ruby on Rails 4.0 to pull it all together
+* ...and several others
 
 Installation
 ------------
