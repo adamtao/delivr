@@ -73,7 +73,7 @@ class SalesOrder < ActiveRecord::Base
         ShopMailer.order_confirmation(self).deliver if self.user.email?
       rescue Stripe::InvalidRequestError => e
         logger.error "Stripe error while creating customer: #{e.message}"
-        errors.add :base, t('problem_with_cc')
+        errors.add :base, I18n.t('problem_with_cc')
         false
       end
     end    
