@@ -19,11 +19,16 @@
 <div class="row">
 	<div class="large-5 large-push-7 small-12 columns">
 		<% if @item.main_image %>
-			<%= link_to(
+		<ul class="clearing-thumbs clearing-feature" data-clearing>
+			<li class="clearing-featured-img"><%= link_to(
 					interchange_image(@item.main_image, :medium, {
 							small: 'small', medium: 'large', large: 'medium'
 						}), 
-					@item.main_image.image.url ) %>
+					@item.main_image.image.url ) %></li>
+			<% (@item.images - [@item.main_image]).each do |image| %>
+				<li><%= link_to image_tag(image.image.url(:thumb)), image.image.url %></li>
+			<% end %>
+		</ul>
 		<% end  %>
 		<div class="row">
 			<div class="large-10 large-offset-1 columns">

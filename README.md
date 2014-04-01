@@ -43,7 +43,6 @@ export DEPLOY_USER=deploy
 
 DEVELOPMENT TODO
 ----------------
-* Sitemap
 * T/C, privacy policy
 * Testing (should've done this along the way)
 * Better look for cart, order, confirmation
@@ -56,3 +55,4 @@ DEVELOPMENT TODO
 * Item banner images
 * Auto-generated homepage (enable/disable with admin settings)
 * Merge users when logged in from different providers?
+

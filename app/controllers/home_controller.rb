@@ -14,4 +14,30 @@ class HomeController < ApplicationController
 			end
 		end
 	end
+
+  # Generates sitemap.xml
+  def sitemap
+    @pages = []
+    @pages << { 
+    	url: root_url,
+      updated_at: 1.day.ago,
+      changefreq: 'daily',
+      priority: 0.7 
+    }
+    Category.all.each do |category|
+    	category.active_items.each do |item|
+    		@pages << {
+		    	url: url_for(item),
+		      updated_at: item.updated_at,
+		      changefreq: 'weekly',
+		      priority: 0.9 
+    		}
+    	end
+    end
+  end
+
+  # Generates robots.txt
+  def robots
+  end
+
 end

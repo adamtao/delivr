@@ -42,6 +42,9 @@ Delivr::Application.routes.draw do
 	patch 'profile/update', to: 'profile#update', as: 'update_profile'
   resources :identities
 
+  get 'sitemap(.:format)' => 'home#sitemap', as: :sitemap, format: :xml
+  get 'robots(.:format)'  => 'home#robots',  as: :robots,  format: :text
+
   # Admin stuff
   get "admin", to: 'admin#index', as: 'admin_root'
 

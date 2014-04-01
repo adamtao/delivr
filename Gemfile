@@ -23,7 +23,7 @@ gem 'cancan'
 gem 'rolify'
 
 # Look and feel gems:
-gem 'foundation-rails', '5.0.3.1'
+gem 'foundation-rails', '~>5.0.3'
 gem 'simple_form'
 gem 'friendly_id'
 gem 'RedCloth'
