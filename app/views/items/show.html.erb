@@ -36,25 +36,29 @@
 				<h6 class="subheader"><%= t('documentation').capitalize %>:</h6>
 				<ul>
 					<% @item.documents.each do |d| %>
-						<li><%= link_to d.document_file_name, d.document.url %></li>
+						<li><%= link_to d.document_file_name.to_s.gsub(/[\\\_\-]/, " "), d.document.url %></li>
 					<% end %>
 				</ul>
 				<% end %>
+
+				<div class="panel text-center">
+					<% if current_user && current_user.items.include?(@item) %>
+						<%= link_to t('download_now'), quick_item_download_path(@item), class: "medium success radius button" %>
+					<% else %>
+						<h4 class="subheader">
+							<%= humanized_money_with_symbol @item.price %>
+						</h4>
+						<%= button_to t('add_to_cart'), add_to_cart_path(@item), class: "small radius button" %>
+					<% end %>
+				</div>
 			</div>
 		</div>
 	</div>
 	<div class="large-7 large-pull-5 small-12 columns">
 		<div style="margin-bottom: 20px;">
 			<%=raw textilize(@item.description) %>
-		</div>
 
-		<% if current_user && current_user.items.include?(@item) %>
-			<%= link_to t('download_now'), quick_item_download_path(@item), class: "medium success radius button" %>
-		<% else %>
-			<h4 class="subheader">
-				<%= humanized_money_with_symbol @item.price %>
-			</h4>
-			<%= button_to t('add_to_cart'), add_to_cart_path(@item), class: "small radius button" %>
-		<% end %>
+			<div class="small-print"><%=raw textilize(@item.small_print) %></div>
+		</div>
 	</div>
 </div>

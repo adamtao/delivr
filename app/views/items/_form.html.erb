@@ -59,7 +59,8 @@
 
     <div class="row">
       <div class="large-8 columns">
-        <%= f.input :description, input_html: { style: "height: 200px; font-size: 15px"}  %>
+        <%= f.input :description, input_html: { style: "height: 200px; font-size: 15px"} %>
+        <%= f.input :small_print, input_html: { style: "height: 130px; font-size: 12px"}, label: "Small print (compatibility, disclaimer, etc. appears below everything else.)" %>
       </div>
       <div class="large-4 columns">
         <%= f.association :categories, collection: Category.all, as: :check_boxes %>

@@ -1270,3 +1270,13 @@ section {
   @extend .row;
   margin-top: 20px;
   }
+
+
+.small-print, .small-print p {
+	font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+	font-size: rem-calc(13);
+	color: scale-color($body-font-color, $lightness: -30%);
+	letter-spacing: rem-calc(1);
+}
+
+
